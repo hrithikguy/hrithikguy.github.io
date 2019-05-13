@@ -1,15 +1,24 @@
 ## Publications
+
+* Aditya Gudibanda, Jordi Ros-Giralt, and Richard Lethin.  [Fast Detection of Elephant Flows with Dirichlet-Categorical Inference](https://github.com/hrithikguy/papers/blob/master/dirichlet.pdf)  _Supercomputing Conference_, 2018.
+
+* Aditya Gudibanda, Tom Henretty, Muthu Baskaran, James Ezick, and Richard Lethin.  [All-at-once Decomposition of Coupled Billion-scale Tensors in Apache Spark.](https://github.com/hrithikguy/papers/blob/master/CPOPT.pdf)  _High Performance Extreme Computing_, 2018.
+
+* Zheng Wang, Aditya Gudibanda, Ugochukwu Ugwuowo, Frances Trail, and Jeffrey P. Townsend.  [Using evolutionary genomics, transcriptomics, and systems biology to reveal gene networks underlying fungal development.](https://github.com/hrithikguy/papers/blob/master/fungal.pdf)  _Fungal Biology Reviews_, 2017.
+
+* Longzhu Q. Shen, Fjodor Melnikov, John Roethle, Aditya Gudibanda, Richard S. Judson, Julie B. Zimmerman and Paul T. Anastas.  [Coupled molecular design diagrams to guide safer chemical design with reduced likelihood of perturbing the NRF2-ARE antioxidant pahtway and inducing cytotoxicity.](https://github.com/hrithikguy/papers/blob/master/c6gc02073a.pdf)  _Green Chemistry_, 2016.
+
+* Longzhu Q. Shen, Richard S. Judson, Fjodor Melnikov, John Roethle, Aditya Gudibanda, Julie B. Zimmerman, and Paul T. Anastas.  [Probabilistic diagrom for designing chemical with reduced potency to incur cytotoxicity.](https://github.com/hrithikguy/papers/blob/master/c6gc01058j.pdf)  _Green Chemistry_, 2016.
+
 * Aditya Gudibanda, Edward W. Lowe Jr., and Jens Meiler.  [The Implementation of Paired Descriptor Functions to Improve Quantitative Structure Activity Relationship Models for Drug Discovery.](https://github.com/hrithikguy/papers/blob/master/Gudibanda.pdf)  _Young Scientist_, 2012.
 
 ## Projects
-* [Latent Variable Inference with Factor Graphs](
-  pdfs/LatentVariableInferenceWithFactorGraphs.pdf):
-  term project for STAT 667, a graduate-level course on probabilistic graphical
-  models.  
-* [newton-sketch](https://github.com/huisaddison/newton-sketch): Implementation of
-  [Newton Sketch: A Linear-time Optimization Algorithm with Linear-Quadratic
-  Convergence](https://arxiv.org/abs/1505.02250)
-  in NumPy and Spark.
+* [Math 354: Number Theory Midterm](https://github.com/hrithikguy/Math354NumberTheory):
+  Midterm project for Math 354: Number Theory - write a program which solves a system of linear congruence relationships.
+
+* [Coursera Machine Learning course by Andrew Ng](https://github.com/hrithikguy/CourseraMachineLearning): 
+  My solutions to all the assignments for the Machine Learning Coursera course taught by Stanford Professor Andrew Ng
+
   
 ## Experience
 
