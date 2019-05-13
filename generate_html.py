@@ -16,7 +16,7 @@ HeadText = """
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Addison Hu</title>
+    <title>Aditya Gudibanda</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Bitter|Raleway" rel="stylesheet">
@@ -39,7 +39,7 @@ BODY_TEXT_TEMPLATE = """
 
 HEADER_TEXT_TEMPLATE = """
       <header>
-        <h1>Addison Hu</h1>
+        <h1>Aditya Gudibanda</h1>
         <p>{position}<br>{organization}</p>
          <p>
          <a href="{headshot_url}">
@@ -55,7 +55,7 @@ HEADER_TEXT_TEMPLATE = """
          </p>
         <p><b>contact: <a class="email" href='{mail_href}'>{mail}</a></b></br>
         <b>cv:</b> <a href="{cv}">download pdf</a><br>
-        <b>github:</b> <a href="https://github.com/huisaddison">repositories</a><br>
+        <b>github:</b> <a href="https://github.com/hrithikguy">repositories</a><br>
   <b>more?</b> <a href="./blog/">blog</a></p>
       </header>
 """
@@ -71,23 +71,23 @@ FOOTER_TEXT_TEMPLATE = """
 	</small></p>
         <p><small>
 	    All statements and opinions on this website are solely
-	    attributable to the author, Addison Hu, and not to any
+	    attributable to the author, Aditya Gudibanda, and not to any
 	    organization with which the author is affiliated.
 	</small></p>
       </footer>
 """
 
 HeaderText = HEADER_TEXT_TEMPLATE.format(
-    position        = 'PhD Student',
-    organization    = 'Carnegie Mellon University',
-    cv              = 'pdfs/AddisonHu_CV.pdf',
+    position        = 'Research Engineer',
+    organization    = 'Reservoir Labs',
+#     cv              = 'pdfs/AddisonHu_CV.pdf',
     headshot_url    = 'blog/cycling-seattle.html',
     headshot_text   = 'with my bicycle',
     headshot        = 'img/autumn-bicycle.jpg',
-    mail_href       = r'mail&#116;o&#58;&#109;a&#37;&#54;9&#108;%40hu&#105;' +
-                      r'saddiso%&#54;E&#46;c&#111;m',
-    mail            = r'mail&#64;&#104;&#117;i&#115;a&#100;di&#115;&#111;&#110;&' +
-                      r'#46;com',
+#     mail_href       = r'mail&#116;o&#58;&#109;a&#37;&#54;9&#108;%40hu&#105;' +
+#                       r'saddiso%&#54;E&#46;c&#111;m',
+#     mail            = r'mail&#64;&#104;&#117;i&#115;a&#100;di&#115;&#111;&#110;&' +
+#                       r'#46;com',
 )
 
 FooterText = FOOTER_TEXT_TEMPLATE.format(
