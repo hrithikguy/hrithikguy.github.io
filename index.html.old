@@ -42,7 +42,9 @@
 
       
     <section>
-    <h2>Publications</h2>
+    <h2>About Me</h2>
+<p>Hello! Welcome to my website. On this page, you will find my publications to date, my work and research experience, and links to various projects I have worked on. See my blog (linked on the left) for some of my technical writing. Please feel free to contact me (email linked on the left) if you'd like to discuss any interesting technical topics or opportunities. </p>
+<h2>Publications</h2>
 <ul>
 <li>
 <p>Aditya Gudibanda, Jordi Ros-Giralt, and Richard Lethin.  <a href="https://github.com/hrithikguy/papers/blob/master/dirichlet.pdf">Fast Detection of Elephant Flows with Dirichlet-Categorical Inference</a>  <em>Supercomputing Conference</em>, 2018.</p>
@@ -75,26 +77,32 @@
 </li>
 </ul>
 <h2>Experience</h2>
-<h4><strong>Research Assistant, Yale Dept. of Statistics</strong> | Aug. 2016 - May 2017</h4>
+<h4>**Research Engineer, Reservoir Labs | June 2017 - Present</h4>
 <ul>
-<li>Investigated minimax convergence rates for estimation of bandable precision
-  matrices.  Work appeared in <a href="http://papers.nips.cc/paper/7074-minimax-estimation-of-bandable-precision-matrices">NIPS 2017.</a>
-  Journal version on <a href="https://arxiv.org/abs/1710.07006">arxiv</a>.</li>
-<li><a href="https://github.com/huisaddison/newton-sketch">Implemented approximations</a>
-  to second-order optimization algorithms (e.g., sketched Newton) in
-  distributed settings.</li>
+<li>Working on advanced research and development projects, involving the development of algorithms
+  for machine learning and network engineering. Published two first-author papers and presented at
+  academic conferences. Submitted two Provisional Patent Applications (PPAs).</li>
+<li>Used C, C++, Python, Apache Spark, Scala</li>
 </ul>
-<h4><strong>Teaching Fellow, Yale Statistics; CS</strong> | Jan. 2016 - May 2017</h4>
+<h4>**Lead Machine Learning Engineer and Cofounder, Knowsun Consulting | May 2016 - Present</h4>
 <ul>
-<li>Served in grading and supplemental teaching roles for various courses in
-  the Statistics and Computer Science Departments, covering material including
-  inference, model selection, optimization, dimensionality reduction,
-  dictionary learning, matrix factorization, etc., with applications in
-  R, Python, and Spark.</li>
+<li>Developed and implemented machine learning algorithms to meet business needs. Regularly
+communicated with clients to understand business and technology needs and developed algorithms
+that produced an effective and desired solution. Collaborated with a team of PhD's as well as frontend software engineers </li>
+<li>Used Python and C</li>
 </ul>
-<h4><strong>Data Scientist, Facebook Seattle</strong> | July 2017 - August 2018</h4>
+<h4>**Research Assistant, Yale University School of Public Health | May 2015 - Present</h4>
 <ul>
-<li>Worked on Search Core Relevance.</li>
+<li>Statistically analyzed genome data involving gene expression patterns during embryogenesis of
+fungi to determine whether certain evolutionary markers are still functionally extant. Published a
+paper as a result of this work.</li>
+<li>Used R, C, and Python</li>
+</ul>
+<h4>**Research Assistant, Yale School of Forestry and Environmental Studies | November 2014 - September 2015</h4>
+<ul>
+<li>Performed data analysis and machine learning to model structure-activity relationships of different
+compounds to predict cytotoxicity. Published two papers as a result of this work. </li>
+<li>Used C</li>
 </ul>
 <h2>Miscellanea</h2>
 <ul>
