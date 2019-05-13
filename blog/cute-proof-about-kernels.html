@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="">	
+<head>
+	<meta charset="utf-8"/>
+	<title>A Cute Proof (Product of Kernels is a Kernel) - huisaddison/blog</title>	
+	<meta name="author" content="Addison">
+	
+
+	<meta name="description" content="A cute proof about kernels.">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="http://huisaddison.com/blog/theme/css/main.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		
+
+</head>
+	
+<body>
+
+    <div class="container">
+	  
+	
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+	<article class="full">
+			
+        <header>
+		<h1>A Cute Proof (Product of Kernels is a Kernel)</h1>
+		
+<div class="metadata">
+  <time datetime="2017-02-05T00:00:00-05:00" pubdate>Sun 05 February 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="http://huisaddison.com/blog/author/addison.html">Addison</a>
+    </address>
+  in <a href="http://huisaddison.com/blog/category/statistics.html">Statistics</a>
+<p class="tags">tagged <a href="http://huisaddison.com/blog/tag/stats.html">stats</a>, <a href="http://huisaddison.com/blog/tag/learning-theory.html">learning-theory</a>, <a href="http://huisaddison.com/blog/tag/rkhs.html">rkhs</a>, <a href="http://huisaddison.com/blog/tag/kernels.html">kernels</a></p></div>        </header>
+		
+        <section>
+		<h2>Background</h2>
+<p>One of the most fundamental  concepts of statistical learning theory is that
+of the Reproducing Kernel Hilbert Space.  Recall that a kernel function on an
+RKHS is such that <span class="math">\(K(x, y) = \langle K_x, K_y \rangle_\mathcal{H}\)</span>.  Rather
+than evaluating an inner product in the Hilbert space, we may simply evaluate
+the kernel function.</p>
+<p>More generally, we may define a positive semidefinite kernel <span class="math">\(K:\mathcal{X}
+\times \mathcal{X} \mapsto \mathbf{R}\)</span> such that
+<span class="math">\(M = \left(K(x_i, x_j)\right)_{ij}\)</span> is positive semidefinite for all finite
+collections <span class="math">\(\{x_i\}_{i=1}^n\)</span>.</p>
+<p>To make this result more useful, it would be nice te be able to have a
+consistent way of discovering or constructing kernels.  One such way is to
+take the product of two existing kernels.</p>
+<h2>Statement &amp; Proof</h2>
+<p><strong>Claim.</strong> <em>Suppose <span class="math">\(K_1, K_2: \mathcal{X}\times\mathcal{X} \mapsto \mathbf{R}\)</span>
+are kernels.  Then
+<div class="math">$$
+K(x, y) = K_1(x, y) K_2(x, y)
+$$</div>
+is a kernel.</em></p>
+<p><em>Proof.</em>  Because <span class="math">\(K_1, K_2\)</span> are kernels, given an arbitrary finite collection
+of <span class="math">\(\{x_1\}_{i=1}^n\)</span>, the matrix defined by evaluating the kernel function on
+all pairs of the collection satisfies the following:
+</p>
+<div class="math">$$
+\mathbf{R}^{n\times n} \ni K_j = \left(K_j(x_i, x_k)\right)_{ik} \succeq 0
+$$</div>
+<p>
+for <span class="math">\(j \in \{1, 2\}\)</span>.  Let <span class="math">\(\mathbf{R}^n \ni X_1 \sim \mathcal{N}(0, K_1),
+X_2 \sim \mathcal{N}(0, K_2)\)</span> be independent.  Define <span class="math">\(Y \triangleq X_1
+\circ X_2\)</span> the elementwise product of <span class="math">\(X_1\)</span> and <span class="math">\(X_2\)</span>.  Then:
+</p>
+<div class="math">\begin{align*}
+\mathrm{cov}(Y_i, Y_j) 
+    &amp;=  \mathbf{E} Y_i Y_j \\
+    &amp;=  \mathbf{E} X_{1i}X_{2i}X_{1j}X_{2j} \\
+    &amp;=  \mathbf{E} X_{1i}X_{1j}\mathbf{E}X_{2i}X_{2j} \\
+    &amp;=  \mathrm{cov}(X_{1i}, X_{1j})\mathrm{cov}(X_{2i}, X_{2j})  \\
+    &amp;=  K_1(x_i, x_j)K_2(x_i, x_j)      \\
+    &amp;=  K(x_i, x_j)
+\end{align*}</div>
+<p>
+and we know covariance matrices in general are positive semidefinite.</p>
+<h2>Discussion</h2>
+<p>I'm particularly fond of this proof because it elegantly connects two facts:</p>
+<ul>
+<li>Kernel functions evaluated on finite sets yield positive semidefinite
+    matrices by definition.</li>
+<li>Covariance matrices are by definition positive semidefinite.</li>
+</ul>
+<p>We begin with two kernel functions, and show that the product of their outputs
+may be considered valid output for an other kernel; but along the way, we treat
+the matrices created by evaluating the two known kernel functions on finite
+collections as covariance matrices, and construct a new covariance matrix that
+coincides with the desired matrix associated with the function we sought to
+prove is a kernel.  With the multivariate normal distribution as our aid, we
+step in to and back out of the world of probability to prove a result in the
+field of learning theory.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>	
+        </section>
+
+	</article>
+
+
+
+		  </div>	
+		  
+
+      <footer class="site-footer">
+        <a href="http://huisaddison.com" class="site-title">huisaddison/</a><a href="http://huisaddison.com/blog" class="site-title">blog</a>
+
+	  </footer>	
+
+	</div>
+	
+
+</body>
+</html>

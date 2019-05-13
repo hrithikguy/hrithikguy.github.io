@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="">	
+<head>
+	<meta charset="utf-8"/>
+	<title>Assouad's Lemma - huisaddison/blog</title>	
+	<meta name="author" content="Addison">
+	
+
+	<meta name="description" content="A brief discussion of Assouad's Lemma, its uses, and its relationship to Le Cam's Method.">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="http://huisaddison.com/blog/theme/css/main.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		
+
+</head>
+	
+<body>
+
+    <div class="container">
+	  
+	
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+	<article class="full">
+			
+        <header>
+		<h1>Assouad's Lemma</h1>
+		
+<div class="metadata">
+  <time datetime="2017-02-01T00:00:00-05:00" pubdate>Wed 01 February 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="http://huisaddison.com/blog/author/addison.html">Addison</a>
+    </address>
+  in <a href="http://huisaddison.com/blog/category/statistics.html">Statistics</a>
+<p class="tags">tagged <a href="http://huisaddison.com/blog/tag/math.html">math</a>, <a href="http://huisaddison.com/blog/tag/stats.html">stats</a>, <a href="http://huisaddison.com/blog/tag/minimax.html">minimax</a>, <a href="http://huisaddison.com/blog/tag/risk.html">risk</a>, <a href="http://huisaddison.com/blog/tag/assouad.html">assouad</a></p></div>        </header>
+		
+        <section>
+		<div class="math">$$
+    \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+    \newcommand{\EE}{\mathbf{E}}
+$$</div>
+<p>
+Assouad's Lemma is a common tool for proving lower bounds on the maximum risk
+associated with an estimation problem, and its core it may be interpreted as
+a multiple comparisons version of Le Cam's Method.  This post will first
+review the version discussed by Bin Yu in her chapter of <a href="http://www.springer.com/us/book/9780387949529">Festschrift
+for Lucien Le Cam</a>.  After that,
+we will discuss a variation found in Aad van der Vaart's <a href="https://books.google.com/books/about/Asymptotic_Statistics.html?id=UEuQEM5RjWgC">Asymptotic
+Statistics</a>.  We conclude with a brief discussion of its use.</p>
+<h2>Assouad à la Bin Yu</h2>
+<h3>Preliminaries</h3>
+<ul>
+<li>Assume that <span class="math">\(\mathcal{P}\)</span> is a family of probability measures and <span class="math">\(\theta(P)\)</span>
+    is the parameter of interest with values in the pseudo-metric space
+    <span class="math">\((\mathcal{D}, d)\)</span>.</li>
+<li>Let <span class="math">\(\hat\theta = \hat\theta(X)\)</span> be an estimator based on an <span class="math">\(X\)</span> drawn
+    from a distribution <span class="math">\(P\)</span>.</li>
+</ul>
+<h3>Statement</h3>
+<p>Bin Yu gives the following statement of Assouad's Lemma in Chapter 29:</p>
+<p><strong>Lemma 2 (Assouad's Lemma)</strong>  <em>Let <span class="math">\(m\geq 1\)</span> be an integer and let
+<span class="math">\(\mathcal{F}_m = \{P_\tau: \tau \in \{-1, +1\}^m\}\)</span> contain <span class="math">\(2^m\)</span> probability
+measures.  Write <span class="math">\(\tau \sim \tau'\)</span> if <span class="math">\(\tau\)</span> and <span class="math">\(\tau'\)</span> differ in only one
+coordinate, and write <span class="math">\(\tau \sim_j \tau'\)</span> when that coordinate is the jth.
+Suppose that there are <span class="math">\(m\)</span> pseudo-distances on <span class="math">\(\mathcal{D}\)</span> such that
+for any <span class="math">\(x, y \in \mathcal{D}\)</span>
+<div class="math">$$
+    d(x, y) = \sum_{j=1}^m d_j(x, y)
+$$</div>
+and further, that if <span class="math">\(\tau\sim_j\tau'\)</span>,
+<div class="math">$$
+    d_j(\theta(P_\tau), \theta(P_{\tau'})) \geq \alpha_m
+$$</div>
+Then</em>
+</p>
+<div class="math">$$
+    \max_{P_\tau\in\mathcal{F}_m}
+    \mathbf{E}_\tau d(\hat\theta, \theta(P_\tau)) \geq
+    m\cdot \frac{\alpha_m}{2}\min\{\norm{P_\tau\wedge P_{\tau'}}:
+    \tau\sim\tau'\}
+$$</div>
+<h3>Proof</h3>
+<p>We now discuss the proof provided.  For each tuple <span class="math">\(\tau = 
+(\tau_1, \dotsc, \tau_m)\)</span>, let <span class="math">\(\tau^j\)</span> denote the <span class="math">\(m\)</span>-tuple
+that differs only at the jth index.  Then <span class="math">\(d(\theta(\tau),
+\theta(P_{\tau^j}))\geq \alpha_m\)</span> by assumption.</p>
+<p>The key idea in this proof that we may bound the maximum risk over <span class="math">\(\tau\)</span>
+from below by the average over the risk for each <span class="math">\(\tau\)</span>, and then
+apply Le Cam's Method many times to get our desired bound.</p>
+<p>But first, we use the assumption that we may decouple our pseudo-distance
+metric across the members of <span class="math">\(\tau\)</span>:
+</p>
+<div class="math">\begin{align*}
+    \max_\tau \EE_\tau d(\theta(P_\tau), \hat\theta)
+        &amp;=  \max_\tau\sum_{j=1}^m \EE_{\tau_j} d(\theta(P_\tau), \hat\theta)
+\end{align*}</div>
+<p>
+after which we use the average to lower bound and rearrange the summations:
+</p>
+<div class="math">\begin{align*}
+    \max_\tau \EE_\tau d(\theta(P_\tau), \hat\theta)
+        &amp;=  \max_\tau\sum_{j=1}^m \EE_{\tau_j} d(\theta(P_\tau), \hat\theta)\\
+        &amp;\geq 2^{-m}\sum_\tau \sum_{j=1}^m
+            \EE_\tau d_j(\theta(P_\tau), \hat\theta)    \\
+        &amp;= \sum_{j=1}^m2^{-m}\sum_\tau 
+            \EE_\tau d_j(\theta(P_\tau), \hat\theta)
+\end{align*}</div>
+<p>
+afterwards, Yu cleverly rearranges the terms so that each <span class="math">\(\tau\)</span> is matched
+up with a <span class="math">\(\tau^j\)</span> by strategically adding a copy of each term and then
+dividing through by a half:
+</p>
+<div class="math">\begin{align*}
+    \sum_{j=1}^m2^{-m}&amp;\sum_\tau 
+        \EE_\tau d_j(\theta(P_\tau), \hat\theta)    \\
+    &amp;=  
+    \sum_{j=1}^m2^{-m}\sum_\tau 
+        \frac{1}{2}
+        \left(
+        \EE_\tau d_j(\theta(P_\tau), \hat\theta)    +
+        \EE_{\tau^j} d_j(\theta(P_{\tau^j}), \hat\theta)
+        \right)
+\end{align*}</div>
+<p>For each <span class="math">\(\tau\)</span> and <span class="math">\(j\)</span>, consider the pair of associated hypotheses <span class="math">\(P_\tau\)</span>
+and <span class="math">\(P_{\tau^j}\)</span>.  By using Le Cam's Method, we may bound the average
+estimation error for each of these pairs from below:
+</p>
+<div class="math">\begin{align*}
+    \max_\tau \EE_\tau d(\theta(P_\tau), \hat\theta)
+        &amp;\geq \sum_{j=1}^m 2^{-m} \sum_\tau
+            \frac{\alpha_m}{2} \norm{P_\tau \wedge P_{\tau^j}}    \\
+        &amp;\geq m
+            \frac{\alpha_m}{2}
+             \min\{\norm{P_\tau \wedge P_{\tau^j}}: \tau\sim\tau'\}
+\end{align*}</div>
+<p>
+giving our desired bound.</p>
+<h2>Assouad à la Aad van der Vaart</h2>
+<p>The <a href="https://arxiv.org/abs/1010.3866">paper</a> that I've been reading lately by
+Zhou et al uses a slightly different version of Assouad's Lemma, elaborated by
+van der Vaart in his book Asymptotic Statistics.  My post about lower bounds
+discussed in that paper (which takes advantage of Assouad's Lemma) may be found
+<a href="http://huisaddison.com/blog/discuss-covmat-optimal-convergence-pt2.html">here</a>.</p>
+<p>The version discussed by van der Vaart relaxes the assumption that the distance
+metric decouple across <span class="math">\(j\)</span>.</p>
+<h3>Preliminaries</h3>
+<p>Suppose we have a parameter set <span class="math">\(\Theta = \{0, 1\}^r\)</span> and are estimating
+an arbitrary quantity <span class="math">\(\psi(\theta)\)</span>, belonging to a metric space with
+metric <span class="math">\(d\)</span>.</p>
+<h3>Statement</h3>
+<p><strong>24.3  Lemma (Assouad).</strong>  <em>For any estimator <span class="math">\(T\)</span> based on an observation
+in the experiment (<span class="math">\(P_\theta: \theta\in\{0, 1\}^r\)</span>), and any <span class="math">\(p &gt; 0\)</span>,</em>
+</p>
+<div class="math">$$
+\max_\theta 2^p \EE_\theta d^p(T, \psi(\theta))
+\geq
+\min_{H(\theta, \theta') \geq 1} \frac{
+    d^p(\psi(\theta), \psi(\theta'))
+}{
+    H(\theta, \theta')
+}
+\frac{r}{2}
+\min_{H(\theta, \theta') = 1} \norm{P_\theta \wedge P_{\theta'}}
+$$</div>
+<p>We see that the first term in the lower bound, which gives the minimum
+distance between two parameters indexed by the vertices of a hypercube,
+is normalized by the Hamming distance between the vertex indices, whereas
+in Yu's version of Assouad's Lemma the assumption that we could decompose
+the distance metric allowed us to only look at parameters corresponding
+to neighboring vertices.</p>
+<h3>Proof</h3>
+<p>We define an estimator <span class="math">\(S\)</span> as follows:
+</p>
+<div class="math">$$
+S \in\arg\min_{\{0, 1\}^r} d(T, \psi(S))
+$$</div>
+<p>
+For any <span class="math">\(\theta\)</span>, we have the lower bound:
+</p>
+<div class="math">\begin{align*}
+d(\psi(S), \psi(\theta)
+    &amp;\leq d(\psi(S), T) + d(\psi(\theta), T)
+    &amp;&amp;\text{(Triangle Inequality.)} \\
+    &amp;\leq 2d(\psi(\theta), T)
+    &amp;&amp;\text{(By definition of $S$)}
+\end{align*}</div>
+<p>Pick <span class="math">\(\alpha\)</span> such that for all <span class="math">\(\theta \neq \theta'\)</span>:
+</p>
+<div class="math">$$
+d^p(\psi(\theta), \psi(\theta')) \geq \alpha H(\theta, \theta')
+$$</div>
+<p>
+Equivalently,
+</p>
+<div class="math">$$
+\alpha = \min_{\theta \neq \theta'}
+\frac{d^p(\psi(\theta), \psi(\theta'))}{H(\theta, \theta')}
+$$</div>
+<p>Therefore, we may bound:
+</p>
+<div class="math">\begin{align*}
+    2^p\EE_\theta d^p(T, \psi(\theta))
+    &amp;\geq 2^p \EE_\theta \frac{1}{2^p}d^p(\psi(S), \psi(\theta))    \\
+    &amp;\geq \alpha \EE_\theta H(S, \theta)
+\end{align*}</div>
+<p>
+Let's focus on the expectation term and bound the maximum by the average.
+</p>
+<div class="math">\begin{align*}
+\max_\theta \EE_\theta H(S, \theta)
+&amp;\geq  \frac{1}{2^r}\sum_\theta \EE_\theta H(S, \theta)     \\
+&amp;      \frac{1}{2^r}\sum_\theta 
+    \sum_{j=1}^r \EE_\theta|S_j-\theta_j|       \\
+&amp;      \frac{1}{2^{r-1}}
+    \sum_{j=1}^r
+    \sum_{\theta: \theta_j \in\{0, 1\}}
+    \frac{1}{2}
+    \left(
+    \EE_{\theta: \theta_j = 0} |S_j-\theta_j|   +
+    \EE_{\theta: \theta_j = 1} |S_j-\theta_j|       \right) \\
+&amp;=     \frac{1}{2^{r-1}}
+    \sum_{j=1}^r
+    \sum_{\theta: \theta_j \in\{0, 1\}}
+    \frac{1}{2}
+    \left(
+    \int (1 - S_j) p_{\theta:\theta_j = 0}\;d\mu   +
+    \int S_j p_{\theta: \theta_j = 1}\;d\mu        \right) \\
+&amp;\geq  \frac{1}{2^{r-1}}
+    \sum_{j=1}^r
+    \sum_{\theta: \theta_j \in\{0, 1\}}
+    \frac{1}{2}
+    \Bigg(
+    \int (1 - S_j) \min\{p_{\theta:\theta_j = 0},
+        p_{\theta: \theta_j = 1}\}\;d\mu                    \\
+    &amp;\qquad\qquad\qquad\qquad\qquad+
+    \int S_j \min\{p_{\theta:\theta_j = 0},
+        p_{\theta: \theta_j = 1}\}\;d\mu \Bigg) \\
+&amp;=     
+    \frac{1}{2}
+    \sum_{j=1}^r
+    \frac{1}{2^{r-1}}
+    \sum_{\theta: \theta_j \in\{0, 1\}}
+    \int \min\{p_{\theta:\theta_j = 0},
+        p_{\theta: \theta_j = 1}\}\;d\mu  \\
+&amp;\geq
+    \frac{1}{2}
+    \sum_{j=1}^r
+    \frac{1}{2^{r-1}}
+    \sum_{\theta: \theta_j \in\{0, 1\}}
+    \norm{P_{\theta:\theta_j = 0} \wedge
+        P_{\theta: \theta_j = 1}}\\
+&amp;\geq
+    \frac{1}{2}
+    \sum_{j=1}^r
+    \min_{H(\theta, \theta') = 1}
+    \norm{P_{\theta} \wedge
+        P_{\theta'}}            \\
+&amp;=  \frac{r}{2}
+    \min_{H(\theta, \theta') = 1}
+    \norm{P_{\theta} \wedge
+        P_{\theta'}}
+\end{align*}</div>
+<p>Appending the factor of <span class="math">\(\alpha\)</span> previously calculated, we have our desired
+bound:
+</p>
+<div class="math">\begin{align*}
+\max_\theta 2^p \EE_\theta d^p(T, \psi(\theta))
+&amp;\geq
+\alpha
+\frac{r}{2}
+\min_{H(\theta, \theta') = 1} \norm{P_\theta \wedge P_{\theta'}}    \\
+&amp;\geq
+\min_{H(\theta, \theta') \geq 1} \frac{
+    d^p(\psi(\theta), \psi(\theta'))
+}{
+    H(\theta, \theta')
+}
+\frac{r}{2}
+\min_{H(\theta, \theta') = 1} \norm{P_\theta \wedge P_{\theta'}}
+\end{align*}</div>
+<h2>Discussion</h2>
+<p>As previously observed, Assouad's Lemma may be decomposed into a set of
+two-point comparisons for which Le Cam's Method may be (and is) applied.
+So why bother with Assouad?</p>
+<p>By simultaneously considering, say, <span class="math">\(m\)</span> two-point comparisons, we are able to
+push up our lower bound by a factor of <span class="math">\(m\)</span> corresponding to the dimensionality
+of the associated hypercube, which can be convenient or necessary to establish
+the optimality of an estimator; it certainly doesn't hurt to have a tighter
+bound.  As Yu remarks in her note, "it is known that Assouad's Lemma (Lemma 2)
+gives very effective lower bounds for many global estimation problems." </p>
+<p>Of course, we must satisfy the assumptions on the distance between parameters
+in our space, as well as work to construct an intelligent mapping from the
+vertices of the hypercube to the parameters themselves so that the pairwise
+application of Le Cam succeeds.  Regardless, it's delightful to see that Le
+Cam's Method can be found at the heart of such a useful tool.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>	
+        </section>
+
+	</article>
+
+
+
+		  </div>	
+		  
+
+      <footer class="site-footer">
+        <a href="http://huisaddison.com" class="site-title">huisaddison/</a><a href="http://huisaddison.com/blog" class="site-title">blog</a>
+
+	  </footer>	
+
+	</div>
+	
+
+</body>
+</html>

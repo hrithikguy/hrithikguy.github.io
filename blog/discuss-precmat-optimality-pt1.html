@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="">	
+<head>
+	<meta charset="utf-8"/>
+	<title>Discussion: Asymptotic Normality and Optimalities in Estimation of Large Gaussian Graphical Models, Part 1 - huisaddison/blog</title>	
+	<meta name="author" content="Addison">
+	
+
+	<meta name="description" content="Discussion of paper on asymptotic properties of an entrywise estimator for precision matrices.">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="http://huisaddison.com/blog/theme/css/main.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		
+
+</head>
+	
+<body>
+
+    <div class="container">
+	  
+	
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+	<article class="full">
+			
+        <header>
+		<h1>Discussion: Asymptotic Normality and Optimalities in Estimation of Large Gaussian Graphical Models, Part 1</h1>
+		
+<div class="metadata">
+  <time datetime="2017-02-09T00:00:00-05:00" pubdate>Thu 09 February 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="http://huisaddison.com/blog/author/addison.html">Addison</a>
+    </address>
+  in <a href="http://huisaddison.com/blog/category/statistics.html">Statistics</a>
+<p class="tags">tagged <a href="http://huisaddison.com/blog/tag/math.html">math</a>, <a href="http://huisaddison.com/blog/tag/stats.html">stats</a>, <a href="http://huisaddison.com/blog/tag/covariance.html">covariance</a>, <a href="http://huisaddison.com/blog/tag/minimax.html">minimax</a>, <a href="http://huisaddison.com/blog/tag/risk.html">risk</a>, <a href="http://huisaddison.com/blog/tag/precision.html">precision</a>, <a href="http://huisaddison.com/blog/tag/asymptotics.html">asymptotics</a>, <a href="http://huisaddison.com/blog/tag/normality.html">normality</a></p></div>        </header>
+		
+        <section>
+		<div style="display:none">
+    $$
+    \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+    \newcommand{\RR}{\mathbf{R}}
+    \newcommand{\EE}{\mathbf{E}}
+    \newcommand{\XX}{\mathbf{X}}
+    \newcommand{\Nn}{\mathcal{N}}
+    \{\Nn}{\mathcal{N}}
+    \DeclareMathOperator{\var}{var}
+    $$
+</div>
+
+<h2>Introduction</h2>
+<p>As part of the project I've been working on, I'm reading <a href="https://arxiv.org/abs/1309.6024">Asymptotic Normality
+and Optimalities in Estimation of Large Gaussian Graphical Models</a>, a paper by Ren, Sun, Zhang, and Zhou.</p>
+<p>The paper describes a technique for producing asymptotically efficient
+entrywise estimators for precision matrices, under the Gaussian assumption.
+They are able to accomplish this with a sparseness condition relative
+to the sample size.  Intuitively, matrices that are less sparse require
+more samples to achieve the parametric rate.  The parameter space also
+makes an assumption the spectrum of the matrix (range of its singular
+values).</p>
+<p>In this initial post, some motivation for the problem is given, and then
+we walk through some intuition, and then fully dissect the technique
+used by the author, so that later posts can be fully dedicated to the
+inference results and proofs of theorems.</p>
+<h2>Motivation</h2>
+<p>The precision matrix is of particular interest in the multivariate Gaussian
+setting due to the fact that the precision matrix admits, in the form of
+its nonzero entries, an adjacency matrix for the graphical model associated
+with conditional independence statements about the set of Gaussian random
+variables involved.  This will be discussed in an upcoming blog post.</p>
+<h2>Intuition</h2>
+<p>The authors produce entrywise elements of the precision matrix by exploiting
+some neat properties about Gaussian vectors.</p>
+<p>Consider a random matrix <span class="math">\(X \in \RR^{n \times p}\)</span>, <span class="math">\(n\)</span> observations of <span class="math">\(p\)</span>
+variables, drawn from a <span class="math">\(\Nn(0, \Sigma_{p\times p})\)</span> distribution.  Rather
+than estimating <span class="math">\(\hat\Sigma\)</span> directly and inverting it, we may make the
+following observations.</p>
+<p>Let's take a look at what happens if we take a pair of indices <span class="math">\(A = \{i, j\}
+\in [p]\)</span>, and regress the associated variables on all the others, <span class="math">\(A^c = 
+[p]\setminus\{i, j\}\)</span>.  We would have:
+</p>
+<div class="math">$$
+x_A = \beta x_{A^c} + \epsilon
+$$</div>
+<p>
+where <span class="math">\(\epsilon\)</span> is a noise term, distributed normally with mean zero, and
+which are independent of <span class="math">\(A^c\)</span>.  Note that here</p>
+<ul>
+<li><span class="math">\(x_A \in \RR^{2}\)</span></li>
+<li><span class="math">\(\beta \in \RR^{2\times (p-2)}\)</span></li>
+<li><span class="math">\(x_{A^c} \in \RR^{p-2}\)</span></li>
+<li><span class="math">\(\epsilon \in \RR^2\)</span></li>
+</ul>
+<p>We can multiply both sides by <span class="math">\(x_{A^c}\)</span>, and then take the expectation on
+both sides:
+</p>
+<div class="math">\begin{align*}
+x_A &amp;= \beta x_{A^c} + \epsilon \\
+x_Ax_{A^c}^\top &amp;= \beta x_{A^c}x_{A^c}^\top + \epsilon x_{A^c}^\top \\
+\EE x_Ax_{A^c}^\top &amp;= \beta \EE x_{A^c}x_{A^c}^\top    \\
+\Sigma_{A, A^c} &amp;=  \beta \Sigma_{A^c, A^c} \\
+\Rightarrow
+\beta &amp;= \Sigma_{A, A^c}\Sigma_{A^c, A^c}^{-1}
+\end{align*}</div>
+<p>This immediately implies that given we observe <span class="math">\(x_{A^c}\)</span>, the mean of <span class="math">\(x_A\)</span> is
+<span class="math">\(\Sigma_{A, A^c}\Sigma_{A^c, A^c}^{-1}x_{A^c}\)</span>.  But what about the variance?
+Let's see how the noise is distributed:
+</p>
+<div class="math">\begin{align*}
+\epsilon &amp;= \Sigma_{A, A^c}\Sigma_{A^c, A^c}^{-1} x_{A^c} - x_A\\
+\mathrm{var}(\epsilon) &amp;= \Sigma_{A, A^c}\Sigma_{A^c, A^c}^{-1}\Sigma_{A^c,
+    A^c}\Sigma_{A^c, A^c}^{-1}\Sigma_{A^c, A} + \Sigma_{A, A}\\ 
+&amp;=\Sigma_{A, A^c}\Sigma_{A^c, A^c}^{-1}\Sigma_{A^c, A} + \Sigma_{A, A}\\ 
+\end{align*}</div>
+<p>Then, assuming <span class="math">\(x_{A^c}\)</span> is observed, the variance of <span class="math">\(x_A\)</span> depends only
+on the noise:
+</p>
+<div class="math">\begin{align*}
+\mathrm{var}(x_A|x_{A^c})   &amp;=  \mathrm{var}(\epsilon)  \\
+&amp;=\Sigma_{A, A^c}\Sigma_{A^c, A^c}^{-1}\Sigma_{A^c, A} + \Sigma_{A, A}\\ 
+\end{align*}</div>
+<p>We observe that the variance of <span class="math">\(\epsilon\)</span> is essentially the variance
+of <span class="math">\(x_A\)</span> given <span class="math">\(x_{A^c}\)</span>, which we denote <span class="math">\(\Sigma_{A|A^c} = \Theta_{A, A}\)</span>.  By
+using the fact that:
+</p>
+<div class="math">$$
+    \Theta_{A, A} = \Omega_{A, A}^{-1}
+$$</div>
+<p>
+we can intuitively get estimates for blocks of the precision matrix at a time
+by inverting the estimates for the conditional covariance matrix.</p>
+<h3>Rewriting <span class="math">\(\Sigma\)</span> with <span class="math">\(\Omega\)</span></h3>
+<p>By crunching through some identities, we may rewrite:
+</p>
+<div class="math">$$
+\beta = \Sigma_{A, A^c}\Sigma_{A^c, A^c}^{-1} 
+    = -\Omega_{A, A}^{-1}\Omega_{A, A^c}
+$$</div>
+<p>
+which is similar to what the authors will use later on.  I can review the
+salient identities in a future post.</p>
+<h2>Methodology</h2>
+<p>Now that we've reviewed the intuition behind why this should work, let's dive
+into the methodology of the paper.  Note that to be consistent with the
+convention that observations are listed in a data matrix <span class="math">\(X\)</span> row-wise, most
+of the vectors in the paper's exposition are row vectors; therefore, the
+next few formulas will be transposes of those given in the previous section.</p>
+<p>By analogy of the intuition previously given (the only differences are that
+<span class="math">\(\XX\)</span> is now a matrix, and <span class="math">\(\beta\)</span> and <span class="math">\(\epsilon\)</span> are transposed), we have:
+</p>
+<div class="math">$$
+\XX_A = \XX_{A^c}\beta + \epsilon_A
+$$</div>
+<p>
+where, adhering to the authors' usage of the precision matrix, and transposing
+everything, we have:
+</p>
+<div class="math">$$
+\beta = - \Omega_{A^c, A}\Omega_{A, A}
+$$</div>
+<p>Now, suppose we were only interested in estimating <span class="math">\(\epsilon\)</span> (as looking at
+the noise is the key to estimating the entries of the precision matrix) and
+we <em>knew</em> <span class="math">\(\beta\)</span>.  Then what would the maximum likelihood estimator of
+<span class="math">\(\Theta_{A, A}\)</span> look like?  The authors denote oracle MLE of <span class="math">\(\Theta_{A, A}\)</span> as
+</p>
+<div class="math">$$
+\Theta^{ora}_{A, A} = (\theta^{ora}_{kl})_{k, l \in A}
+    = \frac{\epsilon_A^\top\epsilon_A}{n}
+$$</div>
+<p>
+and so the corresponding estimates of the precision matrix would be:
+</p>
+<div class="math">$$
+\Omega^{ora}_{A, A} = (\omega^{ora}_{kl})_{k, l \in A}
+    = \left(\Theta^{ora}_{A, A}\right)^{-1}
+$$</div>
+<p>Suppose we have an adequate estimates of the regression weights <span class="math">\(\hat\beta\)</span>.
+Based on <span class="math">\(\hat\beta\)</span>, we may derive estimates <span class="math">\(\hat\epsilon\)</span> of the residuals.
+</p>
+<div class="math">$$
+\hat\epsilon_A = \XX_A - \XX_{A^c}\hat\beta
+$$</div>
+<p>
+and consequently the estimate of the conditional covariance matrix:
+</p>
+<div class="math">$$
+\hat\Theta_{A, A} = \frac{\hat\epsilon_A^\top\hat\epsilon_A}{n}
+$$</div>
+<p>
+and invert the entries of this estimator to get the estimates for <span class="math">\(\Omega_{A,
+A}\)</span>: 
+</p>
+<div class="math">$$
+\hat\Omega_{A, A} = \hat\Theta_{A, A}^{-1}
+$$</div>
+<p>To calculate the estimates <span class="math">\(\hat\beta\)</span>, the authors introduce a scaled lasso
+regression problem.  For each <span class="math">\(m \in A = \{i, j\}\)</span>, they perform the
+optimization: 
+</p>
+<div class="math">$$
+\left\{\hat\beta_m, \hat\theta^{1/2}_{mm}\right\}
+=
+\arg\min_{b\in\RR^{p-2},\\\sigma \in \RR^+}
+\left\{
+\frac{\norm{\XX_m - \XX_{A^c}b}^2}{2n\sigma}
++ \frac{\sigma}{2} 
++ \lambda\sum_{k\in A^c}\frac{\norm{\XX_k}}{\sqrt{n}}|b_k|
+\right\}
+$$</div>
+<p>
+Intuitively, the scaling factor on the <span class="math">\(\ell_1\)</span> penalty implicitly standardizes
+the design vector to length <span class="math">\(\sqrt{n}\)</span> such that the <span class="math">\(\ell_1\)</span> penalty is
+applied to the new coefficients <span class="math">\(\frac{\norm{\XX_k}}{\sqrt n}b_k\)</span>.</p>
+<p>The authors also consider the following least squares estimator, based on
+the model <span class="math">\(\hat S_{mm}\)</span> selected by the scaled lasso estimation problem:
+</p>
+<div class="math">$$
+\left\{\hat\beta_m, \hat\theta^{1/2}_{mm}\right\}
+=
+\arg\min_{b\in\RR^{p-2},\\\sigma \in \RR^+}
+\left\{
+    \frac{\norm{\XX_m - \XX_{A^c}b}^2}{2n\sigma}
+    + \frac{\sigma}{2} 
+    : \mathrm{supp}(b) \subseteq \hat S_{mm}
+\right\}
+$$</div>
+<p>
+Essentially, after determining the support of <span class="math">\(b\)</span> through the scaled lasso
+estimation problem, we can fit least squares entries for <span class="math">\(\hat\beta_m\)</span> only
+on the features in the support.</p>
+<p>In my upcoming posts about this paper, I will review the inference results and
+step through the associated proofs.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>	
+        </section>
+
+	</article>
+
+
+
+		  </div>	
+		  
+
+      <footer class="site-footer">
+        <a href="http://huisaddison.com" class="site-title">huisaddison/</a><a href="http://huisaddison.com/blog" class="site-title">blog</a>
+
+	  </footer>	
+
+	</div>
+	
+
+</body>
+</html>

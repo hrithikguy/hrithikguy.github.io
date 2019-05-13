@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="">	
+<head>
+	<meta charset="utf-8"/>
+	<title>Discussion: Asymptotic Normality and Optimalities in Estimation of Large Gaussian Graphical Models, Part 2 - huisaddison/blog</title>	
+	<meta name="author" content="Addison">
+	
+
+	<meta name="description" content="Discussion of paper on asymptotic properties of an entrywise estimator for precision matrices, continued.">
+
+
+	<link rel="top" href="#" /><link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic|Source+Code+Pro' rel='stylesheet' type='text/css'></link>
+	<link rel="stylesheet" href="http://huisaddison.com/blog/theme/css/main.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		
+
+</head>
+	
+<body>
+
+    <div class="container">
+	  
+	
+	  <div class="wrapper">
+
+		  <div role="main" class="content">
+	<article class="full">
+			
+        <header>
+		<h1>Discussion: Asymptotic Normality and Optimalities in Estimation of Large Gaussian Graphical Models, Part 2</h1>
+		
+<div class="metadata">
+  <time datetime="2017-02-19T00:00:00-05:00" pubdate>Sun 19 February 2017</time>
+    <address class="vcard author">
+      by <a class="url fn" href="http://huisaddison.com/blog/author/addison.html">Addison</a>
+    </address>
+  in <a href="http://huisaddison.com/blog/category/statistics.html">Statistics</a>
+<p class="tags">tagged <a href="http://huisaddison.com/blog/tag/math.html">math</a>, <a href="http://huisaddison.com/blog/tag/stats.html">stats</a>, <a href="http://huisaddison.com/blog/tag/covariance.html">covariance</a>, <a href="http://huisaddison.com/blog/tag/minimax.html">minimax</a>, <a href="http://huisaddison.com/blog/tag/risk.html">risk</a>, <a href="http://huisaddison.com/blog/tag/precision.html">precision</a>, <a href="http://huisaddison.com/blog/tag/asymptotics.html">asymptotics</a>, <a href="http://huisaddison.com/blog/tag/normality.html">normality</a></p></div>        </header>
+		
+        <section>
+		<div style="display:none">
+    $$
+    \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+    \newcommand{\RR}{\mathbf{R}}
+    \newcommand{\DD}{\mathbf{D}}
+    \newcommand{\PP}{\mathbf{P}}
+    \newcommand{\EE}{\mathbf{E}}
+    \newcommand{\XX}{\mathbf{X}}
+    \newcommand{\Nn}{\mathcal{N}}
+    \newcommand{\Gg}{\mathcal{G}}
+    \newcommand{\la}{\langle}
+    \newcommand{\ra}{\rangle}
+    \DeclareMathOperator{\var}{var}
+    \DeclareMathOperator{\diag}{diag}
+    \DeclareMathOperator{\cov}{cov}
+    $$
+</div>
+
+<h2>Introduction</h2>
+<p>As part of project I've been working on, I'm reading <a href="https://arxiv.org/abs/1309.6024">Asymptotic Normality and
+Optimalities in Estimation of Large Gaussian Graphical Models</a>, a paper by Ren, Sun, Zhang, and Zhou.</p>
+<p>Motivation, problem setup, and other preliminaries are addressed in a previous
+<a href="http://huisaddison.com/blog/discuss-precmat-optimality-pt1.html">blog post</a>.  In this post, we
+will begin discussing the statistical inference results of the paper by
+walking through the proof for <strong>Theorem 2</strong>, which places bounds on the
+distribution of the estimates and makes the results in <strong>Theorem 3</strong> possible.
+The results of <strong>Theorem 1</strong> are simply a special case of <strong>Theorem 2</strong>.</p>
+<h2>Preliminaries</h2>
+<p>First, we recall the definitions of the estimators for the sub-blocks of the
+precision and conditional covariance matrices.  We begin with the scaled
+lasso regression parameter estimates:<br>
+</p>
+<div class="math">\begin{align}
+\left\{\hat\beta_m, \hat\theta^{1/2}_{mm}\right\}
+=
+\arg\min_{b\in\RR^{p-2},\\\sigma \in \RR^+}
+\left\{
+\frac{\norm{\XX_m - \XX_{A^c}b}^2}{2n\sigma}
++ \frac{\sigma}{2} 
++ \lambda\sum_{k\in A^c}\frac{\norm{\XX_k}}{\sqrt{n}}|b_k|
+\right\}
+\end{align}</div>
+<p>
+which yield <span class="math">\(\hat\epsilon_A\)</span> as the residual estimates from regression <span class="math">\(\XX_A\)</span>
+on <span class="math">\(\XX_{A^c}\)</span>.  Then, we define:
+</p>
+<div class="math">\begin{align}
+\hat\Theta_{A, A}   &amp;=  \frac{\hat\epsilon_A^\top\hat\epsilon_A}{n} \\
+\hat\Omega_{A, A}   &amp;=  \hat\Theta_{A, A}^{-1}
+\end{align}</div>
+<p>We now define the parameter space considered.  For <span class="math">\(\lambda &gt; 0\)</span>, we
+defined capped-<span class="math">\(\ell_1\)</span> balls as follows:
+</p>
+<div class="math">$$
+\mathcal{G}^* = \left\{
+\Omega: s_\lambda(\Omega) \leq s, M^{-1}
+    \leq \lambda_\min(\Omega)
+    \leq \lambda_\max(\Omega)
+    \leq M
+\right\}
+$$</div>
+<p>
+where
+</p>
+<div class="math">$$
+s_\lambda = s_\lambda(\Omega) = \max_j\sum_{i\neq j}
+\min\left\{1, \frac{|\omega_{ij}|}{\lambda}\right\}
+$$</div>
+<p>
+for <span class="math">\(\Omega = (\omega_{ij})_{1\leq i, j\leq p}\)</span>.  The authors take <span class="math">\(\lambda\)</span>
+on the order <span class="math">\(\sqrt\frac{\log p}{n}\)</span> in this paper.</p>
+<p>Intuitively, this parameter space is a mix of the <span class="math">\(\ell_0\)</span> norm, which
+measures sparsity, and the <span class="math">\(\ell_1\)</span> norm, which is the sum of absolute
+values, imposed on each row.  For <span class="math">\(\lambda\)</span> very small, we recover the pure
+<span class="math">\(\ell_0\)</span> norm; this special case is the parameter space used in <strong>Theorem 1</strong>.</p>
+<p>Appealing to the graphical model representation of the multivariate normal
+distribution, in which a nonzero entry <span class="math">\(\omega_{ij}\)</span> in the precision matrix
+implies the existence of an edge between nodes <span class="math">\(i\)</span> and <span class="math">\(j\)</span>, we may observe that
+when <span class="math">\(|\omega_{ij}|\)</span> is zero or larger than <span class="math">\(\lambda\)</span>, <span class="math">\(s_\lambda\)</span> is
+equivalent to the maximum node degree of the graph (the degree of each node is
+equivalent to the number of nonzero entries on each row, or column).  Finally,
+we note that the spectrum (eigenvalues) of the matrix are bounded, a fact upon
+which the later analysis relies.</p>
+<p>The authors then prove a theorem that gives an error bound on the estimates.
+Their approach is to:</p>
+<ol>
+<li>Compare the estimates to the oracle MLE, giving a concentration bound
+    on the distances between them.</li>
+<li>Show that
+    <div class="math">$$
+    \kappa_{ij}^{ora} = \sqrt{n}
+    \frac{\omega_{ij}^{ora} - \omega_{ij}}
+    {\sqrt{\omega_{ii}\omega_{jj} + \omega_{ij}^2}}
+    $$</div>
+    is asymptotically standard normal, which implies the oracle MLE is
+    asymptotically normal with mean <span class="math">\(\omega_{ij}\)</span> and variance
+    <span class="math">\(n^{-1}\sqrt{\omega_{ii}\omega_{jj} + \omega_{ij}^2}\)</span>.</li>
+</ol>
+<p>By coupling the actual estimator to the oracle MLE and then proving nice
+properties for the oracle MLE, we can work towards nice properties for
+the actual estimator.</p>
+<p>First, we state a few conditions, which will be useful in our analysis of
+<strong>Theorem 2</strong>.  When these conditions hold for certain fixed constant <span class="math">\(C_0\)</span>,
+<span class="math">\(\varepsilon_\Omega \rightarrow 0\)</span>, and all <span class="math">\(\delta \geq 1\)</span>, the asymptotic
+normality and efficiency properties will hold, as we will see in the analysis
+of Theorem 2.</p>
+<p>The first condition is:
+</p>
+<div class="math">\begin{align}
+\max_{A: A = \{i, j\}}
+\PP\left\{
+\norm{\XX_{A^c}\left(\hat\beta_{A^c, A} - \beta_{A^c, A}\right)}^2
+\geq C_0 s \delta\log p
+\right\}
+\leq p^{-\delta + 1}\varepsilon_\Omega
+\end{align}</div>
+<p>
+Observing that <span class="math">\(\XX_{A^c}\left(\hat\beta_{A^c, A} - \beta_{A^c, A}\right)\)</span>
+is equivalent to <span class="math">\(\norm{\epsilon_A - \hat\epsilon_A}^2\)</span>, we may interpret
+this as a concentration bound on the deviation of the residual estimates
+from the oracle residuals.</p>
+<p>The next condition is:
+</p>
+<div class="math">\begin{align}
+\max_{A:A = \{i, j\}}
+\PP\left\{
+\norm{
+    \bar\DD^\frac{1}{2}_{A^c}
+    \left(\hat\beta_{A^c, A} - \beta_{A^c, A}\right)
+}_1 \geq C_0 s \sqrt{\delta\frac{\log p}{n}}
+\right\}
+\leq p^{-\delta+1}\varepsilon_\Omega
+\end{align}</div>
+<p>
+with <span class="math">\(\bar \DD = \diag\left(\frac{\XX^\top\XX}{n}\right)\)</span>.  These two
+statements are  essentially a risk bounds on the lasso estimator, which will be
+discussed and proved in a future post.</p>
+<p>The final condition is, for <span class="math">\(\theta_{ii}^{ora} = \frac{\norm{\XX_i
+- \XX{A^c}\beta_{A^c, i}}^2}{n}\)</span>,
+</p>
+<div class="math">\begin{align}
+\max_{A: A = \{i, j\}}
+\PP\left\{
+\left|
+\frac{\hat\theta_{ii}}{\theta_{ii}^{ora}} - 1
+\right| \geq
+C_0 s \delta \frac{\log p}{n}
+\right\}
+\leq p^{-\delta + 1}\varepsilon_\Omega
+\end{align}</div>
+<p>
+with a certain complexity measure <span class="math">\(s\)</span> of the precision matrix <span class="math">\(\Omega\)</span>,
+assuming the spectrum of <span class="math">\(\Omega\)</span> is bounded, and <span class="math">\(n \geq \frac{(s\log
+p)^2}{c_0}\)</span> for a sufficiently small <span class="math">\(c_0 &gt; 0\)</span>.  </p>
+<h2>Statement</h2>
+<p><strong>Theorem 2.</strong> <em>Let <span class="math">\(\hat\Theta_{A, A}\)</span> and <span class="math">\(\hat\Omega_{A, A}\)</span> be estimators
+defined in (2) and (3) respectively.  Let <span class="math">\(\delta \geq 1\)</span>.  Suppose <span class="math">\(s \leq
+\frac{c_0n}{\log p}\)</span> for a sufficiently small constant <span class="math">\(c_0 &gt; 0\)</span>.</em></p>
+<ol>
+<li><em>Suppose that conditions (7), (8), (9) hold with <span class="math">\(C_0\)</span> and
+    <span class="math">\(\varepsilon_\Omega\)</span>.  Then
+    <div class="math">\begin{align}
+    \max_{G^*(M, s, \lambda)}\max_{A:A=\{i, j\}}
+    \PP\left\{
+        \norm{\hat\Theta_{A, A} - \Theta_{A, A}^{ora}}_\infty
+        &gt; C_1 s \frac{\log p}{n}
+    \right\}\leq 6\varepsilon_\Omega p^{-\delta + 1}
+        + \frac{4p^{-\delta + 1}}{\sqrt{2\log p}}
+    \end{align}</div>
+    and
+    <div class="math">\begin{align}
+    \max_{G^*(M, s, \lambda)}\max_{A:A=\{i, j\}}
+    \PP\left\{
+        \norm{\hat\Omega_{A, A} - \Omega_{A, A}^{ora}}_\infty
+        &gt; C_1' s \frac{\log p}{n}
+    \right\}\leq 6\varepsilon_\Omega p^{-\delta + 1}
+        + \frac{4p^{-\delta + 1}}{\sqrt{2\log p}}
+    \end{align}</div>
+    where <span class="math">\(\Theta^{ora}_{A, A}\)</span> and <span class="math">\(\Omega^{ora}_{A, A}\)</span> are the oracle
+    estimators and <span class="math">\(C_1\)</span> is a positive constant depending only on
+    <span class="math">\(\{C_0, \max_{m\in A = \{i, j\}}\theta_{mm}\}\)</span>.</em></li>
+<li><em>Let <span class="math">\(\lambda = (1 + \varepsilon)\sqrt{\frac{2\delta\log p}{n}}\)</span> with
+    <span class="math">\(\varepsilon &gt; 0\)</span> be the <span class="math">\(\lambda\)</span> parameter in the scaled lasso
+    estimation problem, and let <span class="math">\(\hat\beta_{A^c, A}\)</span> be the scaled lasso 
+    estimator, or the LSE after the scaled lasso selection.  Then (4),
+    (5), and (6), and thus (7) and (8) hold for all <span class="math">\(\Omega \in
+    \mathcal{G}^*(M, s, \lambda)\)</span> with a certain constant <span class="math">\(C_0\)</span> depending on
+    <span class="math">\(\{\varepsilon, c_0, M\}\)</span> only and</em>
+    <div class="math">\begin{align}
+    \max_{\Omega \in \mathcal{G}^*(M, s, \lambda)} \varepsilon_\Omega = o(1)
+    \end{align}</div>
+</li>
+<li><em>There exist constants <span class="math">\(D_1\)</span> and <span class="math">\(\vartheta \in (0, \infty)\)</span>, and four
+    marginally standard normal random variables <span class="math">\(Z1, Z_{kl}\)</span>, where <span class="math">\(kl = ii,
+    ij, jj\)</span>, such that whenever <span class="math">\(|Z_{kl}| \leq \vartheta\sqrt{n}\)</span> for all <span class="math">\(kl\)</span>,
+    we have
+    <div class="math">\begin{align}
+    \left|\kappa_{ij}^{ora} - Z'\right|
+    \leq
+    \frac{D_1}{\sqrt{n}}\left(1 + Z_{ii}^2 + Z_{ij}^2 + Z_{jj}^2\right)
+    \end{align}</div>
+    where <span class="math">\(Z'\)</span>, which can be defined as a linear combination of <span class="math">\(Z_{kl}\)</span>.</em></li>
+</ol>
+<p>Intuitively, statement (1) says that there is a very low probability that
+the maximum entrywise deviation of the actual estimator from the oracle MLE
+is larger than a constant that we can control.  Statement (2) shows that
+the conditions are met such that statement (1) holds.  Statement (3) says that
+the rescaled oracle MLE behaves more or less asymptotically normally.</p>
+<p>Once we show these statements about the estimator relative to oracle MLEs,
+we will prove statements in <em>Theorem 3</em> relating the oracle MLEs to the true
+parameter values, and by the triangle inequality, we will have bounds on
+the distances between our estimates on the truth.</p>
+<h2>Proof for Theorem 2(i)</h2>
+<p>The values of <span class="math">\(\theta_{ii}, \theta_{jj}\)</span> are uniformly bounded, which implies
+that the desired concentration bound  (7) follows from (4) for
+<span class="math">\(\theta^{ora}_{ii}\)</span> and <span class="math">\(\theta^{ora}_{jj}\)</span>.  </p>
+<p>Therefore, we only need to be concerned about bounding <span class="math">\(\theta^{ora}_{ij}\)</span>.
+Recall that we define <span class="math">\(\bar \DD = \diag\left(\frac{\XX^\top \XX}{n}\right)\)</span> and
+that <span class="math">\(\XX_{A^c}\)</span> is independent of <span class="math">\(\epsilon_A\)</span>.  First, we show the following.</p>
+<p><strong>Claim.</strong></p>
+<div class="math">$$\left(\XX \bar \DD^{-\frac{1}{2}}\right)^\top_k
+\frac{\epsilon_m}{n}\sim \Nn\left(0, \frac{\theta_{mm}}{n}\right)$$</div>
+<p><em>for all <span class="math">\(m \in A\)</span>.</em></p>
+<p><em>Proof.</em>  First, we observe that <span class="math">\(\XX\bar\DD^{-\frac{1}{2}}\)</span> is essentially
+<span class="math">\(\XX\)</span> with its columns scaled to unit length in Euclidean norm.  The fact
+that the mean of the distribution is zero follows from the fact that the
+columns of <span class="math">\(\XX\)</span> are assumed to be centered.  To show the variance, we 
+observe that we may express</p>
+<div class="math">\begin{align*}
+\var\left(\left(\XX \bar \DD^{-\frac{1}{2}}\right)^\top_k\epsilon_m\right)
+&amp;=  \var\left(\sum_{i=1}^p \left(\XX\bar\DD^{-\frac{1}{2}}\right)_{ik}
+    \epsilon_{im}\right)    \\
+&amp;=  \sum_{i=1}^p \left(\XX\bar\DD^{-\frac{1}{2}}\right)^2_{ik}
+    \var\left(\epsilon_{im}\right)    \\
+&amp;=  \sum_{i=1}^p \left(\XX\bar\DD^{-\frac{1}{2}}\right)^2_{ik}
+    \var\left(\epsilon_{1m}\right)    &amp;&amp;\text{(Symmetry.)}  \\
+&amp;=  \var\left(\epsilon_{1m}\right)  \\
+&amp;=  \EE \left[\epsilon_{1m}^2\right] &amp;&amp;\text{(Errors centered at zero.)}    \\
+&amp;=  n\theta_{mm}
+\end{align*}</div>
+<p>Dividing <span class="math">\(\XX\bar\DD^{-1/2}\)</span> by <span class="math">\(n\)</span> gives the desired
+variance.  <div align="right"> &#8718; </div></p>
+<p>It then follows from the union bound and <a href="http://huisaddison.com/blog/mills-inequality.html">Mill's Inequality</a> that:
+</p>
+<div class="math">$$
+\PP\left\{
+\norm{
+\left(\XX\bar\DD^{-1/2}\right)^\top_{A^c} \frac{\epsilon_m}{n}
+}_\infty &gt; \sqrt{
+2\delta\theta_{mm}n^{-1}\log p
+}
+\right\}
+\leq \frac{p^{-\delta}(p-2)}{\sqrt{2\delta\log p}}
+$$</div>
+<p>Now, let's compare our covariance estimates to the oracle MLE:
+</p>
+<div class="math">\begin{align*}
+\left| \hat\theta_{ij} - \theta_{ij}^{ora}\right|
+    &amp;=  \left|
+        \frac{\hat\epsilon_i^\top\hat\epsilon_j}{n}
+        -
+        \frac{\epsilon_i^\top\epsilon_j}{n}
+        \right|
+\end{align*}</div>
+<p>
+Recalling that
+</p>
+<div class="math">\begin{align*}
+\hat\epsilon_A
+    &amp;= \XX_A - \XX_{A^c}\hat\beta_{A^c, A}  \\
+\epsilon_A
+    &amp;= \XX_A - \XX_{A^c}\beta_{A^c, A}      \\
+\Rightarrow
+\hat\epsilon_A - \epsilon_A
+    &amp;=  \XX_{A^c}\left(\beta_{A^c, A} - \hat\beta_{A^c, A}\right)
+\end{align*}</div>
+<p>
+we have:
+</p>
+<div class="math">\begin{align*}
+\left| \hat\theta_{ij} - \theta_{ij}^{ora}\right|
+    &amp;=  \frac{1}{n}\left|
+        \hat\epsilon_i^\top\hat\epsilon_j
+        -
+        \epsilon_i^\top\epsilon_j
+        \right| \\
+    &amp;=  \frac{1}{n}\left|
+        \left(\epsilon_i 
+        + (\hat\epsilon_i - \epsilon_i)
+        \right)^\top
+        \left(\epsilon_j
+        + (\hat\epsilon_j - \epsilon_j)
+        \right)
+        -
+        \epsilon_i^\top\epsilon_j
+        \right| \\
+    &amp;=  \frac{1}{n}\left|
+        \left(\epsilon_i 
+        +
+        \XX_{A^c}(\beta_i - \hat\beta_i)
+        \right)^\top
+        \left(\epsilon_j
+        +
+        \XX_{A^c}(\beta_j - \hat\beta_j)
+        \right)
+        -
+        \epsilon_i^\top\epsilon_j
+        \right| \\
+    &amp;=  \frac{1}{n}
+        \Bigg|
+        \epsilon_i^\top \epsilon_j
+        + \left(\beta_i - \hat\beta_i\right)^\top \XX_{A^c}^\top \epsilon_j
+        + \epsilon_i^\top \left(\beta_j - \hat\beta_j\right)\XX_{A^c}   \\
+    &amp;\qquad
+        + \left(\beta_i - \hat\beta_i\right)^\top \XX_{A^c}^\top
+            \XX_{A^c}\left(\beta_j - \hat\beta_j\right)
+        -\epsilon_i^\top \epsilon_j
+        \Bigg| \\
+    &amp;\leq  \frac{1}{n}\Bigg[
+        \left|
+        \left(\beta_i - \hat\beta_i\right)^\top \XX_{A^c}^\top \epsilon_j
+        \right|
+        + \left|
+        \epsilon_i^\top \left(\beta_j - \hat\beta_j\right)\XX_{A^c}
+        \right| \\
+    &amp;\qquad
+        + \left|\left(\beta_i - \hat\beta_i\right)^\top \XX_{A^c}^\top
+            \XX_{A^c}\left(\beta_j - \hat\beta_j\right)
+        \right|\Bigg]  \\
+    &amp;=  \frac{1}{n}\Bigg[
+        \left|
+        \left(\beta_i - \hat\beta_i\right)^\top
+        \bar\DD^{-1/2}\bar\DD^{1/2} \XX_{A^c}^\top \epsilon_j
+        \right| \\
+    &amp;\qquad
+        + \left|
+        \epsilon_i^\top \left(\beta_j - \hat\beta_j\right)
+        \bar\DD^{-1/2}\bar\DD^{1/2}\XX_{A^c}
+        \right| \\
+    &amp;\qquad
+        + \left|\left(\beta_i - \hat\beta_i\right)^\top \XX_{A^c}^\top
+            \XX_{A^c}\left(\beta_j - \hat\beta_j\right)
+        \right|\Bigg]\\
+    &amp;\leq \frac{1}{n}\Bigg[
+        \norm{
+            \left(\XX\bar\DD^{-1/2}\right)_{A^c}^\top\epsilon_i
+        }_\infty\norm{
+            \bar\DD^{1/2}\left(\beta_j - \hat\beta_j\right)
+        }_1 \\
+    &amp;\qquad +
+        \norm{
+            \left(\XX\bar\DD^{-1/2}\right)_{A^c}^\top\epsilon_j
+        }_\infty\norm{
+            \bar\DD^{1/2}\left(\beta_i - \hat\beta_i\right)
+        }_1 \\
+    &amp;\qquad
+        +
+        \norm{
+        \XX_{A^c}\left(\beta_i - \hat\beta_i\right)
+        }\cdot\norm{
+        \XX_{A^c}\left(\beta_j - \hat\beta_j\right)
+        }
+    \Bigg] \\
+    &amp;\leq 2\sqrt{2\delta\theta_{mm}n^{-1}\log p}C_0
+            s\sqrt{\delta \frac{\log p}{n}}
+            + \frac{C_0s\delta\log p}{n}\\
+    &amp;=  C_1 s\frac{\delta \log p}{n}
+\end{align*}</div>
+<p>
+with probability at least <span class="math">\(1 - 2p^{-\delta + 1}\epsilon_\Omega
+- 2p^{-\delta + 1}(2\log p)^{-1/2}\)</span> by the union bound, implying (7).</p>
+<p>Given that the spectrum of <span class="math">\(\Theta_{A, A}\)</span> is bounded, the functional
+<span class="math">\(\zeta_{kl}(\Theta_{A, A}) = \left(\Theta_{A, A}^{-1}\right)_{kl}\)</span> is Lipschitz
+in a neighborhood of <span class="math">\(\Theta_{A, A}\)</span> for <span class="math">\(k, l \in A\)</span>, and thus the bound
+on distances between the precision matrix estimates and the oracle MLE for
+the precision matrix in (8) follows from (7).</p>
+<h2>Proof for Theorem 2(ii)</h2>
+<p>The proof for part (ii), though fairly straightforward, depends on Theorem
+10(i), Theorem 11(ii), and Proposition 1, and so we will return to this later.</p>
+<p>This part of the Theorem essentially gives and proves conditions under which
+conditions (4), (5), and (6) hold, which in turn imply (7) and (8) for all
+<span class="math">\(\Omega \in \Gg^*(M, s, \lambda)\)</span> up to a constant.  This part of the Theorem
+also establishes that <span class="math">\(\varepsilon_\Omega\)</span> is <span class="math">\(o(1)\)</span> for all <span class="math">\(\Omega\)</span> in the
+parameter space, implying that it has a negligible impact on the concentration
+bounds (7) and (8).</p>
+<h2>Proof for Theorem 2(iii)</h2>
+<p>To prove the coupling inequality in (10), we first define a random vector
+<span class="math">\(\eta^{ora} = \left(\eta_{ii}^{ora}, \eta_{ij}^{ora}, \eta_{jj}^{ora}\right)\)</span>,
+where
+</p>
+<div class="math">$$
+\eta_{kl}^{ora} = \sqrt{n}\frac{\theta_{kl}^{ora} - \theta_{kl}}
+{\theta_{kk}\theta_{ll} + \theta_{kl}^2}
+$$</div>
+<p>
+By the KMT inequality, for which the authors cite Mason and Zhou (2012) for the
+one-dimensional case and Einmahl (1989) for the multidimensional case, there 
+exist constants <span class="math">\(D_0, \vartheta \in (0, \infty)\)</span> and a random Gaussian vector
+<span class="math">\(Z = (Z_{ii}, Z_{ij}, Z_{jj}) \sim \Nn(0, \breve\Sigma)\)</span> where <span class="math">\(\breve\Sigma
+= \cov(\eta^{ora})\)</span>, such that <span class="math">\(|Z_{kl}| \leq \vartheta\sqrt{n}\)</span> for all <span class="math">\(kl\)</span>
+implies
+</p>
+<div class="math">$$
+\norm{\eta^{ora} - Z}_\infty \leq
+\frac{D_0}{\sqrt{n}} \left(
+1 + Z_{ii}^2 + Z_{ij}^2 + Z_{jj}^2
+\right)
+$$</div>
+<p>Let us now define <span class="math">\(\Theta = (\theta_{ii}, \theta_{ij}, \theta_{jj})\)</span>, consider
+the function
+</p>
+<div class="math">$$
+\omega_{ij}(\Theta) = -\frac{\theta_{ij}}{\theta_{ii}\theta_{jj} - \theta_{ij}^2}
+$$</div>
+<p>
+and take its Taylor expansion, which gives us:
+</p>
+<div class="math">\begin{align*}
+    \omega_{ij}^{ora} - \omega_{ij}
+    &amp;=  \la \nabla\omega_{ij}(\Theta), \Theta^{ora} - \Theta\ra
+        + \sum_{|\beta| = 2}R_\beta(\Theta^{ora})(\Theta-\Theta^{ora})^\beta
+\end{align*}</div>
+<p>
+where
+</p>
+<div class="math">\begin{align*}
+    |\beta|     &amp;\triangleq \sum_k \beta_k   \\
+    x^\beta     &amp;\triangleq \prod_k x_k^{\beta_k}    \\
+    D^\beta f(x)&amp;\triangleq \frac{\partial^{|\beta|} f}
+        {
+            \partial x_1^{\beta_1}
+            \partial x_2^{\beta_2}
+            \partial x_3^{\beta_3}
+        }
+\end{align*}</div>
+<p>
+We observe that Taylor's Theorem gives us a uniform upper bound on the
+coefficients of the remainder terms:
+</p>
+<div class="math">$$
+\left|
+R_\beta\left(\Theta^{ora}_{A, A}\right)
+\right| \leq 2 \max_{|\alpha| = 2}\max_{\Theta_\in B}
+D^\alpha\omega_{ij}(\Theta) \leq C_2
+$$</div>
+<p>
+where <span class="math">\(B\)</span> is a sufficiently small compact ball centered at <span class="math">\(\Theta\)</span>.  The upper
+bound holds when <span class="math">\(\Theta^{ora}\)</span> is in <span class="math">\(B\)</span>, an assumption which can be
+satisfied by picking a small enough value <span class="math">\(\vartheta\)</span> in the assumption
+<span class="math">\(\norm{\eta^{ora}}_\infty \leq \vartheta \sqrt{n}\)</span>.  Note that here <span class="math">\(D^\alpha\)</span>
+is not a constant, but a second order derivative.  This bound follows from
+the fact that equality in the Taylor expansion is satisfied when evaluating
+the second order term with some <span class="math">\(\xi\)</span> between <span class="math">\(\Theta\)</span> and <span class="math">\(\Theta^{ora}\)</span>, so
+the coefficients are naturally bounded above by the maximum value of the
+second order coefficients in <span class="math">\(B\)</span>, as it encloses both <span class="math">\(\Theta\)</span> and
+<span class="math">\(\Theta^{ora}\)</span>.  The bottom line is that when the oracle MLE's value is
+sufficiently close to the truth, a linear approximation is basically good
+enough.</p>
+<p>With this linear approximation to <span class="math">\(\omega_{ij}\)</span> as a function of <span class="math">\(\theta_{ij}\)</span>
+(and a quadratic correction term we can control), we can then express this
+relationship in terms of <span class="math">\(\kappa_{ij}\)</span> and <span class="math">\(\eta_{ij}\)</span>, which are simply
+<span class="math">\(\omega_{ij}, \theta_{ij}\)</span> rescaled by constants, respectively:
+</p>
+<div class="math">$$
+\kappa_{ij}^{ora} = h_1\eta_{ii}^{ora}
++ h_2\eta_{ij}^{ora} + h_3\eta_{jj}^{ora}
++ \sum_{|\beta| = 2}
+\frac{D_\beta R_\beta(\Theta^{ora})}{\sqrt{n}}(\eta^{ora})^\beta
+$$</div>
+<p>
+where <span class="math">\(h_1, h_2, h_3, D_\beta\)</span> are constants.  Subtracting <span class="math">\(Z' = h_1Z_1
++ h_2Z_2 + h_3Z_3 \sim \Nn(0, 1)\)</span> from both sides and applying Hölder's
+Inequality, we obtain:
+</p>
+<div class="math">$$
+|\kappa_{ij}^{ora} - Z'| \leq
+\left(
+\sum_{k=1}^3 |h_k|
+\right) \norm{Z - \eta^{ora}}_\infty + \frac{C_3}{\sqrt{n}}\norm{\eta^{ora}}^2
+$$</div>
+<p>
+Applying the KMT inequality and the fact that <span class="math">\(\norm{\eta^{ora}}^2 \leq C_4
+(Z_{ii}^2 + Z_{ij}^2 + Z_{jj}^2)\)</span> for some large constant <span class="math">\(C_4\)</span>, we complete
+the proof:
+</p>
+<div class="math">\begin{align*}
+|\kappa_{ij}^{ora} - Z'| &amp;\leq
+\left(
+\sum_{k=1}^3 |h_k|
+\right) \norm{Z - \eta^{ora}}_\infty
++ \frac{C_3}{\sqrt{n}}\norm{\eta^{ora}}^2\\
+&amp;\leq \frac{D_1}{\sqrt{n}} ( 1 + Z_{ii}^2 + Z_{ij}^2 + Z_{jj}^2)
+\end{align*}</div>
+<p>
+<div align="right"> &#8718; </div></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>	
+        </section>
+
+	</article>
+
+
+
+		  </div>	
+		  
+
+      <footer class="site-footer">
+        <a href="http://huisaddison.com" class="site-title">huisaddison/</a><a href="http://huisaddison.com/blog" class="site-title">blog</a>
+
+	  </footer>	
+
+	</div>
+	
+
+</body>
+</html>
