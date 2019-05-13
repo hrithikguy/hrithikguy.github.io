@@ -1,7 +1,5 @@
 ## Publications
-* Addison Hu and Sahand Negahban.  [Minimax Estimation of Bandable Precision
-  Matrices.](https://arxiv.org/abs/1710.07006)  _Advances in Neural
-  Information Processing Systems_, 2017.
+* Aditya Gudibanda, Edward W. Low Jr., and Jens Meiler.  [The Implementation of Paired Descriptor Functions to Improve Quantitative Structure Activity Relationship Models for Drug Discovery.](https://github.com/hrithikguy/papers/blob/master/Gudibanda.pdf)  _Young Scientist_, 2012.
 
 ## Projects
 * [Latent Variable Inference with Factor Graphs](
