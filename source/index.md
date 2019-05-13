@@ -1,3 +1,7 @@
+## About Me
+
+Hello! Welcome to my website. On this page, you will find my publications to date, my work and research experience, and links to various projects I have worked on. See my blog (linked on the left) for some of my technical writing. Please feel free to contact me (email linked on the left) if you'd like to discuss any interesting technical topics or opportunities. 
+
 ## Publications
 
 * Aditya Gudibanda, Jordi Ros-Giralt, and Richard Lethin.  [Fast Detection of Elephant Flows with Dirichlet-Categorical Inference](https://github.com/hrithikguy/papers/blob/master/dirichlet.pdf)  _Supercomputing Conference_, 2018.
@@ -22,24 +26,30 @@
   
 ## Experience
 
-#### **Research Assistant, Yale Dept. of Statistics** | Aug. 2016 - May 2017
-* Investigated minimax convergence rates for estimation of bandable precision
-  matrices.  Work appeared in [NIPS 2017.](
-  http://papers.nips.cc/paper/7074-minimax-estimation-of-bandable-precision-matrices)
-  Journal version on [arxiv](https://arxiv.org/abs/1710.07006).
-* [Implemented approximations](https://github.com/huisaddison/newton-sketch)
-  to second-order optimization algorithms (e.g., sketched Newton) in
-  distributed settings.
 
-#### **Teaching Fellow, Yale Statistics; CS** | Jan. 2016 - May 2017
-* Served in grading and supplemental teaching roles for various courses in
-  the Statistics and Computer Science Departments, covering material including
-  inference, model selection, optimization, dimensionality reduction,
-  dictionary learning, matrix factorization, etc., with applications in
-  R, Python, and Spark.
+#### **Research Engineer, Reservoir Labs | June 2017 - Present
+* Working on advanced research and development projects, involving the development of algorithms
+  for machine learning and network engineering. Published two first-author papers and presented at
+  academic conferences. Submitted two Provisional Patent Applications (PPAs).
+* Used C, C++, Python, Apache Spark, Scala
 
-#### **Data Scientist, Facebook Seattle** | July 2017 - August 2018
-* Worked on Search Core Relevance.
+
+#### **Lead Machine Learning Engineer and Cofounder, Knowsun Consulting | May 2016 - Present
+* Developed and implemented machine learning algorithms to meet business needs. Regularly
+communicated with clients to understand business and technology needs and developed algorithms
+that produced an effective and desired solution. Collaborated with a team of PhD's as well as frontend software engineers 
+* Used Python and C
+
+#### **Research Assistant, Yale University School of Public Health | May 2015 - Present
+* Statistically analyzed genome data involving gene expression patterns during embryogenesis of
+fungi to determine whether certain evolutionary markers are still functionally extant. Published a
+paper as a result of this work.
+* Used R, C, and Python
+
+#### **Research Assistant, Yale School of Forestry and Environmental Studies | November 2014 - September 2015
+* Performed data analysis and machine learning to model structure-activity relationships of different
+compounds to predict cytotoxicity. Published two papers as a result of this work. 
+* Used C
 
 
 ## Miscellanea
