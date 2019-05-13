@@ -80,11 +80,14 @@ FOOTER_TEXT_TEMPLATE = """
 HeaderText = HEADER_TEXT_TEMPLATE.format(
     position        = 'Research Engineer',
     organization    = 'Reservoir Labs',
-#     cv              = 'pdfs/AddisonHu_CV.pdf',
+    cv              = 'pdfs/AddisonHu_CV.pdf',
     headshot_url    = 'blog/cycling-seattle.html',
     headshot_text   = 'with my bicycle',
     headshot        = 'img/autumn-bicycle.jpg',
-#     mail_href       = r'mail&#116;o&#58;&#109;a&#37;&#54;9&#108;%40hu&#105;' +
+    mail_href       = 'mailto:adityagudibanda1995@gmail.com',
+    mail            = 'gmail.com'
+
+#r'mail&#116;o&#58;&#109;a&#37;&#54;9&#108;%40hu&#105;' +
 #                       r'saddiso%&#54;E&#46;c&#111;m',
 #     mail            = r'mail&#64;&#104;&#117;i&#115;a&#100;di&#115;&#111;&#110;&' +
 #                       r'#46;com',

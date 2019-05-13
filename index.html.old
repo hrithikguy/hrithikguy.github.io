@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Aditya Gudibanda</title>
+    <title>Addison Hu</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Bitter|Raleway" rel="stylesheet">
@@ -20,8 +20,8 @@
     <div class="wrapper">
       
       <header>
-        <h1>Aditya Gudibanda</h1>
-        <p>Research Engineer<br>Reservoir Labs</p>
+        <h1>Addison Hu</h1>
+        <p>PhD Student<br>Carnegie Mellon University</p>
          <p>
          <a href="blog/cycling-seattle.html">
              <img
@@ -34,9 +34,9 @@
              width="230" />
          </a>
          </p>
-        <p><b>contact: <a class="email" href='mailto:adityagudibanda1995@gmail.com'>gmail.com</a></b></br>
+        <p><b>contact: <a class="email" href='mail&#116;o&#58;&#109;a&#37;&#54;9&#108;%40hu&#105;saddiso%&#54;E&#46;c&#111;m'>mail&#64;&#104;&#117;i&#115;a&#100;di&#115;&#111;&#110;&#46;com</a></b></br>
         <b>cv:</b> <a href="pdfs/AddisonHu_CV.pdf">download pdf</a><br>
-        <b>github:</b> <a href="https://github.com/hrithikguy">repositories</a><br>
+        <b>github:</b> <a href="https://github.com/huisaddison">repositories</a><br>
   <b>more?</b> <a href="./blog/">blog</a></p>
       </header>
 
@@ -44,7 +44,9 @@
     <section>
     <h2>Publications</h2>
 <ul>
-<li>Aditya Gudibanda, Edward W. Lowe Jr., and Jens Meiler.  <a href="https://github.com/hrithikguy/papers/blob/master/Gudibanda.pdf">The Implementation of Paired Descriptor Functions to Improve Quantitative Structure Activity Relationship Models for Drug Discovery.</a>  <em>Young Scientist</em>, 2012.</li>
+<li>Addison Hu and Sahand Negahban.  <a href="https://arxiv.org/abs/1710.07006">Minimax Estimation of Bandable Precision
+  Matrices.</a>  <em>Advances in Neural
+  Information Processing Systems</em>, 2017.</li>
 </ul>
 <h2>Projects</h2>
 <ul>
@@ -98,7 +100,7 @@
 	</small></p>
         <p><small>
 	    All statements and opinions on this website are solely
-	    attributable to the author, Aditya Gudibanda, and not to any
+	    attributable to the author, Addison Hu, and not to any
 	    organization with which the author is affiliated.
 	</small></p>
       </footer>
