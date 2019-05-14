@@ -9,7 +9,7 @@ import os
 import sys
 sys.path.append(os.curdir)
 from pelicanconf import *
-
+printf("publish conf used")
 # If your site is available via HTTPS, make sure SITEURL begins with https://
 SITEURL = 'https://hrithikguy.github.io/blog'
 RELATIVE_URLS = False
