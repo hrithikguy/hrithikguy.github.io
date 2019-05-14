@@ -20,6 +20,9 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 THEME = './themes/bootstrap2'
+PLUGIN_PATHS = ['./plugins']
+PLUGINS = ['render_math']
+
 
 # Blogroll
 #LINKS = (('Pelican', 'http://getpelican.com/'),
