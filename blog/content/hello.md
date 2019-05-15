@@ -9,8 +9,9 @@ Authors: Aditya Gudibanda
 
 I'm trying out Pelican to write my blog. I'm also going to try out adding math equations.
 
-another
-marker
-haha
 $y = x^2$. $x = \frac{-b + 2c}{d}$
+
+
+$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$
+
 
