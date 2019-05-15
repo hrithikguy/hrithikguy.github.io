@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Hello World!</title>
+    <title>MACML</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Aditya Gudibanda">
@@ -77,12 +77,12 @@
           <div class="nav-collapse">
             <ul class="nav">
                           <li class="divider-vertical"></li>
-                  <li >
+                  <li class="active">
                     <a href="./category/projects.html">
 						<i class="icon-folder-open icon-large"></i>Projects
 					</a>
                   </li>
-                  <li class="active">
+                  <li >
                     <a href="./category/testing.html">
 						<i class="icon-folder-open icon-large"></i>testing
 					</a>
@@ -108,8 +108,8 @@
                         <h1>
                                 <a href=""
                                         rel="bookmark"
-                                        title="Permalink to Hello World!">
-                                        Hello World!
+                                        title="Permalink to MACML">
+                                        MACML
                                 </a>
                         </h1>
                 </header>
@@ -117,22 +117,28 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2019-05-14T16:44:00-05:00">
-        <i class="icon-calendar"></i>Tue 14 May 2019
+<abbr class="published" title="2018-01-15T16:44:00-06:00">
+        <i class="icon-calendar"></i>Mon 15 January 2018
 </abbr>
 <span class="label">By</span>
 <a href="./author/aditya-gudibanda.html"><i class="icon-user"></i>Aditya Gudibanda</a>
 <span class="label">Category</span>
-<a href="./category/testing.html"><i class="icon-folder-open"></i>testing</a>.
+<a href="./category/projects.html"><i class="icon-folder-open"></i>Projects</a>.
 
 
 <span class="label">Tags</span>
-	<a href="./tag/pelican.html"><i class="icon-tag"></i>Pelican</a>
-	<a href="./tag/testing.html"><i class="icon-tag"></i>testing</a>
+	<a href="./tag/genetics.html"><i class="icon-tag"></i>genetics</a>
+	<a href="./tag/bioinformatics.html"><i class="icon-tag"></i>bioinformatics</a>
+	<a href="./tag/statistics.html"><i class="icon-tag"></i>statistics</a>
+	<a href="./tag/machine-learning.html"><i class="icon-tag"></i>machine learning</a>
+	<a href="./tag/research.html"><i class="icon-tag"></i>research</a>
+	<a href="./tag/public-health.html"><i class="icon-tag"></i>public health</a>
 </footer><!-- /.post-info -->                </div>
-                <p>I'm trying out Pelican to write my blog. I'm also going to try out adding math equations.</p>
-<p>$y = x^2$. $x = \frac{-b + 2c}{d}$</p>
-<p>$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$</p>
+                <p>This project is based on a software and algorithm developed by the Townsend Lab at the Yale School of Public Health, located here: http://medicine.yale.edu/lab/townsend/sand/</p>
+<p>The paper for this project is located here: https://www.ncbi.nlm.nih.gov/pubmed/19557160
+The basic setup of this project is sequences of discrete binary data. The purpose is to find significant regions of higher or lower probability of a “1” in these sequences. This is useful for genome data, where the elements of the sequence represent nucleotides of a gene, and a “1” represents the presence of a mutation.</p>
+<p>At first glance one might think that we should just set each “region” to be one nucleotide long and set the probability to be 0 or 1 depending on if the actual sequence has a 0 or 1 in that location. This model would assign the best possible likelihood of 1 to the observed data. However, there are two problems – first, we could have multiple sequences as input, and the likelihood would no longer be 1 (although you could argue that we just assign the probability to be the empirical distribution of that nucleotide across all sequences). Second, this model has a lot of parameters – each nucleotide adds an additional parameter to this model. This raises the significant possibility of overfitting, which is a common problem in practice.</p>
+<p>In this project, I extended the existing software which only worked for one dimensional data, to two dimensional data. The code is located here: https://github.com/hrithikguy/PEMA</p>
                 </div><!-- /.entry-content -->
         </article>
 </section>
