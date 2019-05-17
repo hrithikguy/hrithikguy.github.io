@@ -1,53 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
+<head>
+    <meta charset="utf-8" />
+    <!-- Set the viewport width to device width for mobile -->
+    <meta name="viewport" content="width=device-width" />
+
     <title>Aditya Gudibanda's Blog - statistics</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Aditya Gudibanda">
 
-    <!-- Le styles -->
-    <link rel="stylesheet" href="../theme/css/bootstrap.min.css" type="text/css" />
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-      .tag-1 {
-        font-size: 13pt;
-      }
-      .tag-2 {
-        font-size: 10pt;
-      }
-      .tag-2 {
-        font-size: 8pt;
-      }
-      .tag-4 {
-        font-size: 6pt;
-     }
-    </style>
-    <link href="../theme/css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="../theme/css/font-awesome.css" rel="stylesheet">
-
-    <link href="../theme/css/pygments.css" rel="stylesheet">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="../theme/images/favicon.ico">
-    <link rel="apple-touch-icon" href="../theme/images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="../theme/images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="../theme/images/apple-touch-icon-114x114.png">
-
-    <link href="../" type="application/atom+xml" rel="alternate" title="Aditya Gudibanda's Blog ATOM Feed" />
-
+    <link rel="stylesheet" href="../theme/css/normalize.css" />
+    <link rel="stylesheet" href="../theme/css/foundation.min.css" />
+    <link rel="stylesheet" href="../theme/css/style.css" />
+    <link rel="stylesheet" href="../theme/css/pygments.css" />	
+    <script src="../theme/js/modernizr.js"></script>
 
   <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -60,147 +23,146 @@
   </script>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-  </head>
 
 
-  <body>
+</head>
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="../index.html">Aditya Gudibanda's Blog </a>
-          <div class="nav-collapse">
-            <ul class="nav">
-                          <li class="divider-vertical"></li>
-                  <li >
-                    <a href="../category/projects.html">
-						<i class="icon-folder-open icon-large"></i>Projects
-					</a>
-                  </li>
-                  <li >
-                    <a href="../category/testing.html">
-						<i class="icon-folder-open icon-large"></i>testing
-					</a>
-                  </li>
+<body>
 
-                          <ul class="nav pull-right">
-                                <li><a href="../archives.html"><i class="icon-th-list"></i>Archives</a></li>
-                          </ul>
-
-            </ul>
-            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
+<!-- Nav Bar -->
+<nav>
+<div class="top-bar">
+<div class="row">
+    <div class="large-9 large-centered columns">
+	    <h1><a href="..">Aditya Gudibanda's Blog</a></h1>
     </div>
+</div>
+</div>
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="span9" id="content">
-        <div class="article">
-                <h1><a href="../vinas.html">VINAS</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2018-01-21T16:44:00-06:00">
-        <i class="icon-calendar"></i>Sun 21 January 2018
-</abbr>
-<span class="label">By</span>
-<a href="../author/aditya-gudibanda.html"><i class="icon-user"></i>Aditya Gudibanda</a>
-<span class="label">Category</span>
-<a href="../category/projects.html"><i class="icon-folder-open"></i>Projects</a>.
+<!-- Show menu items and pages -->
+<div class="row">
+<div class="large-9 columns">
+    <ul class="button-group navigation">
+
+    </ul>
+</div>
+</div>
+</nav>
+<!-- End Nav -->
 
 
-<span class="label">Tags</span>
-	<a href="../tag/genetics.html"><i class="icon-tag"></i>genetics</a>
-	<a href="../tag/bioinformatics.html"><i class="icon-tag"></i>bioinformatics</a>
-	<a href="../tag/statistics.html"><i class="icon-tag"></i>statistics</a>
-	<a href="../tag/machine-learning.html"><i class="icon-tag"></i>machine learning</a>
-	<a href="../tag/research.html"><i class="icon-tag"></i>research</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>This project holds a special place in my heart, because I consider it to be the first research project which I code completely from scratch, and I also got to work with some amazing colleagues at the Gerstein Lab at the Yale Department of Bioinformatics – Dr. Jing Zhang and Dr …</p>
-                        <a class="btn primary xsmall" href="../vinas.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="../macml.html">MACML</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2018-01-15T16:44:00-06:00">
-        <i class="icon-calendar"></i>Mon 15 January 2018
-</abbr>
-<span class="label">By</span>
-<a href="../author/aditya-gudibanda.html"><i class="icon-user"></i>Aditya Gudibanda</a>
-<span class="label">Category</span>
-<a href="../category/projects.html"><i class="icon-folder-open"></i>Projects</a>.
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns">
+        
+        
+
+            <article>
+                <a href="../vinas.html"><h3 class="article-title">VINAS</h3></a>
+<h6 class="subheader" title="2018-01-21T16:44:00-06:00">Sun 21 January 2018
+</h6>
 
 
-<span class="label">Tags</span>
-	<a href="../tag/genetics.html"><i class="icon-tag"></i>genetics</a>
-	<a href="../tag/bioinformatics.html"><i class="icon-tag"></i>bioinformatics</a>
-	<a href="../tag/statistics.html"><i class="icon-tag"></i>statistics</a>
-	<a href="../tag/machine-learning.html"><i class="icon-tag"></i>machine learning</a>
-	<a href="../tag/research.html"><i class="icon-tag"></i>research</a>
-	<a href="../tag/public-health.html"><i class="icon-tag"></i>public health</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>This project is based on a software and algorithm developed by the Townsend Lab at the Yale School of Public Health, located here: http://medicine.yale.edu/lab/townsend/sand/</p>
+<p>This project holds a special place in my heart, because I consider it to be the first research project which I code completely from scratch, and I also got to work with some amazing colleagues at the Gerstein Lab at the Yale Department of Bioinformatics – Dr. Jing Zhang and Dr. Lucas Lochovsky.</p>
+<p>I started off this project working with Jing with identifying whether a covariate-based approach to estimating mutation probabilities in the genome would be a valid approach, which involved a lot of data crunching and visualization in R. Some of the covariates I looked at were CpG, chromatin accessibility, and various other biologically significant variables. Once we had determined that it was in fact a feasible idea, we were off to the races in terms of deciding upon a suitable model.</p>
+<p>The core problem that we wished to solve was to find genes that are significantly linked with cancer. There are some genes that have many mutations, but are located in regions of the genome with a high background mutation rate, and hence are not that significant. There are also genes that are significantly less mutated than they “should” be compared to the background mutation rate. The purpose of this project was first to quantify and come up with a model for the background mutation rate, and then to design a statistical methodology to determine when the observed mutation count was statistically significant.</p>
+<p>Coming up with a model for the mutation rates of the genome is quite a daunting task. First, there are a huge number of biological factors that determine the true background mutation rate, and second, the genome is huge (~3 billion base pairs). We decided to use logistic regression on a set of 7 covariates, with binary output based on a cohort of genomes of cancer patients (whether, out of all the patients, any of them had a mutation in that location). This worked very well, as some of the covariates captured a high proportion of variance in the mutation rate.</p>
+<p>This was an interesting engineering task – each chromosome is a few dozen gigabytes, so this added up to doing logistic regression on a few terabytes worth of data. I used the LIBSVM (https://www.csie.ntu.edu.tw/~cjlin/libsvm/) to do this, and I used MPI to perform this in parallel in Yale’s High-Performance Computing environment. The final code for all of this will be linked at the end of this blog post.</p>
+<p>After doing this, the next step was to compute the p-values for each gene. Remember that the model so far has given us a set of probabilities p1, .., pn for each of the n bases in the gene, and we have the location and total count of the mutations for each gene. The task is to figure out how to calculate the p-values. If our test statistic is the total count, then this is actually the sum of independent Bernoulli variables with different success probabilities. This is a well-known distribution known as the Poisson binomial distribution (https://en.wikipedia.org/wiki/Poisson_binomial_distribution) and it is numerically tractable.</p>
+<p>I am pleased to say that I completed this part of the project and I verified that the program outputted several genes that are known via experimental biology to be indeed significantly linked with cancer, as well as a few genes that have never been seen before (which I am not allowed to report because this was based on data that only the Gerstein Lab had access to and has not been published yet).</p>
+<p>The final part of this project was to incorporate something called Funseq2 scores (http://funseq2.gersteinlab.org/), which is another project at the Gerstein Lab which gives each nucleotide in the genome a “score” related to its correlation with cancer. The idea was to change the test statistic from the sum of Bernoulli variables, to the weighted sum of Bernoulli variables, where the weights are the Funseq2 scores. I and my collaborators thought that this would increase our statistical sensitivity to detect cancerous genes by incorporating the information captured by Funseq2.</p>
+<p>I found some papers that showed how to do this: This paper uses Chernoff-Hoeffding type bounds (https://www.cc.gatech.edu/~mihail/Rag88.pdf), and another paper (https://arxiv.org/pdf/1301.7392.pdf) gives a bound in both directions. However, both of these papers only give upper bounds and these bounds are too weak in practice. I coded both of these bounds and they gave results that were too weak (p-values that were too high) due to the fact that these are upper bounds on the true p-values.</p>
+<p>At this point, the summer was reaching to an end, and I was not able to figure out how to solve the problem in time. However, this was an exhilarating experience, going from the initial idea, to full implementation, to the final frontier of trying to find new math and theory to compute a statistical p-value. This was especially exciting because the first approach without using the Funseq2 values was already finding genes that had never been reported before.</p>
+<p>The code for VINAS is located here: https://github.com/hrithikguy/VINAS</p><p class="subheader">Category: <a href="../category/projects.html">Projects</a>
+
+    Tagged: 
+    <a href="../tag/genetics.html">genetics </a>
+    <a href="../tag/bioinformatics.html">bioinformatics </a>
+    <a href="../tag/statistics.html">statistics </a>
+    <a href="../tag/machine-learning.html">machine learning </a>
+    <a href="../tag/research.html">research </a>
+</p>
+
+
+
+            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
+                <a href="../macml.html"><h3 class="article-title">MACML</h3></a>
+<h6 class="subheader" title="2018-01-15T16:44:00-06:00">Mon 15 January 2018
+</h6>
+
+
+<p>This project is based on a software and algorithm developed by the Townsend Lab at the Yale School of Public Health, located here: http://medicine.yale.edu/lab/townsend/sand/</p>
 <p>The paper for this project is located here: https://www.ncbi.nlm.nih.gov/pubmed/19557160
-The basic setup of …</p>
-                        <a class="btn primary xsmall" href="../macml.html">more ...</a>
-                </div>
-        </div>
+The basic setup of …</p><p class="subheader">Category: <a href="../category/projects.html">Projects</a>
+
+    Tagged: 
+    <a href="../tag/genetics.html">genetics </a>
+    <a href="../tag/bioinformatics.html">bioinformatics </a>
+    <a href="../tag/statistics.html">statistics </a>
+    <a href="../tag/machine-learning.html">machine learning </a>
+    <a href="../tag/research.html">research </a>
+    <a href="../tag/public-health.html">public health </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="../macml.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
+
+            <!-- /#posts-list -->
+
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5 class="sidebar-title">Site</h5>
+        <ul class="side-nav">
+            <li><a href="../archives.html">Archives</a>
+            <li><a href="../tags.html">Tags</a>
+        </ul>
+
+		
+        <h5 class="sidebar-title">Categories</h5>
+        <ul class="side-nav">
+            <li><a href="../category/projects.html">Projects</a></li>
+            <li><a href="../category/testing.html">testing</a></li>
+   
+        </ul>
+
+        <h5 class="sidebar-title">Links</h5>
+        <ul class="side-nav">
+            <li><a href="https://hrithikguy.github.io">Back to my Website</a></li>
+        </ul>
+		
+
+    </aside> <!-- End Sidebar -->
+
+</div> <!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
         <hr />
-
-        </div><!--/span-->
-
-                <div class="span3 well sidebar-nav" id="sidebar">
-<ul class="nav nav-list">
-<li class="nav-header"><h4><i class="icon-external-link"></i>blogroll</h4></li>
-    <li><a href="https://hrithikguy.github.io"><i class="icon-external-link"></i>Back to my Website</a></li>
-
-<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
-<li>
-<a href="../category/projects.html">
-    <i class="icon-folder-open icon-large"></i>Projects
-</a>
-</li>
-<li>
-<a href="../category/testing.html">
-    <i class="icon-folder-open icon-large"></i>testing
-</a>
-</li>
-
-<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-
-
-</ul>        </div><!--/.well -->
-
-      </div><!--/row-->
-
-      <hr>
-
-      <footer>
-        <address id="about">
-                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
-                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
-        </address><!-- /#about -->
-
-        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
-                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
-      </footer>
-
-    </div><!--/.fluid-container-->
-
-
-
-    <!-- Le javascript -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../theme/js/jquery-1.7.2.min.js"></script>
-    <script src="../theme/js/bootstrap.min.js"></script>
-  </body>
+        <div class="row">
+            <div class="large-6 columns">
+              <!--                  <p>Aditya Gudibanda's Blog by Aditya Gudibanda</p> -->
+            </div>
+            </div>
+    </div>
+</footer>
+</body>
 </html>

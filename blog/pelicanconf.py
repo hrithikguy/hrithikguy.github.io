@@ -19,7 +19,7 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-THEME = './themes/bootstrap2'
+THEME = './themes/zurb-F5-basic'
 #PLUGIN_PATHS = ['./plugins']
 #PLUGINS = ['render_math']
 
