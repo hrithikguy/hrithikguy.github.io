@@ -60,6 +60,36 @@
         
 
             <article>
+                <a href="./first-math-post-distance-from-a-point-to-a-line-in-2d.html"><h3 class="article-title">First Math Post - Distance from a point to a line in 2D</h3></a>
+<h6 class="subheader" title="2019-05-24T18:44:00-05:00">Fri 24 May 2019
+</h6>
+
+
+<p>How do you calculate the distance from a point to a line? First of all, why would you want to? </p>
+<p>There could be many reasons, but I'm interested in it right now because it comes up in machine learning classification problems. For example, perceptrons and support vector machines (SVMs) entail the concept of a "margin" in classification. The intuition for margin comes from the idea that, given a set of points divided into two classes, we would like to find the line dividing the classes which maximizes the distance to the closest point. Intuitively, this will avoid overfitting on the test data, because the line does not get unnecessarily close to any point when it doesn't have to - this preserves "uncertainty". </p>
+<p>So in order to find a separating line which maximizes the margin, we need to be able to mathematically express the margin so that we can incorporate it into a loss function to minimize.</p>
+<p>I will be doing this for two dimensions.</p>
+<p>Suppose we have a line $l$ given by the equation $y = mx + b$, and we have a point $P = (c,d)$. We would like to compute the distance from $P$ to $l$.</p>
+<p>We will do this by computing the distance between $P$ and an arbitrate point on $l$, $Q = (r, mr + b)$, in terms of the variable $r$. Then we will find the $r$ which minimizes this distance.</p>
+<p>The distance is $f(r) = | P - Q |^2 = (c - r)^2 + (mr + b - d)^2$. To find the $r$ which minimizes this, we set the derivative equal to $0$.</p>
+<p>$\frac{d f(r)}{dr} = 2(c-r)(-1) + 2 (mr + b - d) (m) = -2c + 2r + 2m^2r + 2mb - 2md = r(2 + 2m^2) + (2mb - 2md - 2c) = 0$. Solving for $r$, we get $r = \frac{2c + 2md - 2mb}{2 + 2m^2} = \frac{c + md - mb}{1 + m^2}$.</p><p class="subheader">Category: <a href="./category/technical.html">Technical</a>
+
+    Tagged: 
+    <a href="./tag/geometry.html">geometry </a>
+</p>
+
+
+
+            </article>
+
+
+                <hr  class="gradient"/>
+
+
+        
+
+
+            <article>
                 <a href="./hello-world.html"><h3 class="article-title">Hello World!</h3></a>
 <h6 class="subheader" title="2019-05-14T16:44:00-05:00">Tue 14 May 2019
 </h6>
@@ -76,11 +106,9 @@
 
 
 
-            </article>
-
-
+                <a class="button radius secondary small right" href="./hello-world.html">Read More</a>
                 <hr  class="gradient"/>
-
+            </article>
 
         
 
@@ -152,6 +180,7 @@
         <h5 class="sidebar-title">Categories</h5>
         <ul class="side-nav">
             <li><a href="./category/projects.html">Projects</a></li>
+            <li><a href="./category/technical.html">Technical</a></li>
             <li><a href="./category/testing.html">testing</a></li>
    
         </ul>
