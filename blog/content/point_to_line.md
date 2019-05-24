@@ -26,8 +26,8 @@ $ = -2c + 2r + 2m^2r + 2mb - 2md = r(2 + 2m^2) + (2mb - 2md - 2c) = 0$. Solving 
 This is the $x$-coordinate of the point on $l$ closest to $P$. The $y$ coordinate is given by $mr + b$ = \frac{mc + m^2d-m^2b + b + bm^2}{1 + m^2}$
 $ = \frac{mc + m^2d + b}{1 + m^2}$.
 
-Let $Q^* $ be the closest point to $P$ on $l$, given by $Q\left(\frac{c + md - mb}{1 + m^2}}\right)$
-$= \left(\frac{c + md - mb}{1 + m^2}, \frac{mc + m^2d + b}{1 + m^2})$
+Let $Q^* $ be the closest point to $P$ on $l$, given by $\left(\frac{c + md - mb}{1 + m^2}\right)$
+$= \left(\frac{c + md - mb}{1 + m^2}, \frac{mc + m^2d + b}{1 + m^2}\right)$
 
-We need the distance from $Q^* $ to $P$.
+We need the distance from $Q^* $ to $P$. $$x = y^2$$
 
