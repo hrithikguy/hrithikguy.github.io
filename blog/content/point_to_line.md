@@ -1,7 +1,7 @@
 Title: First Math Post - Distance from a point to a line in 2D
 Date: 2019-05-24 18:44
 Category: Technical
-Tags: geometry testing
+Tags: geometry, testing
 Authors: Aditya Gudibanda
 
 
