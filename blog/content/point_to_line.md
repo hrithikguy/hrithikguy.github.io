@@ -40,5 +40,11 @@ $$= \left(\frac{c + md - mb}{1 + m^2}, \frac{mc + m^2d + b}{1 + m^2}\right)$$
 We need the distance from $Q^* $ to $P$.
 
 
+This is given by 
+$$\sqrt{ \left(  \frac{c + cm^2 - c - md + mb}{1 + m^2}  \right)^2 + \left(  \frac{d + dm^2 - mc - m^2d - b}{1 + m^2}  \right)^2  }$$
+$$= \sqrt{ \left(  \frac{cm^2- md + mb}{1 + m^2}  \right)^2 + \left(  \frac{d - mc - b}{1 + m^2}  \right)^2  }$$
+$$= \sqrt{ \left(  \frac{m (cm - d + b)}{1 + m^2}  \right)^2 + \left(  \frac{cm - d + b}{1 + m^2}  \right)^2  }$$
+
+
 
 
