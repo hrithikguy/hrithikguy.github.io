@@ -33,8 +33,8 @@ This is the $x$-coordinate of the point on $l$ closest to $P$. The $y$ coordinat
 $$mr + b = \frac{mc + m^2d-m^2b + b + bm^2}{1 + m^2}$$
 $$ = \frac{mc + m^2d + b}{1 + m^2}$$
 
-Let $Q^{*} $ be the closest point to $P$ on $l$, given by 
-$$Q^{*} = Q\left(\frac{c + md - mb}{1 + m^2}\right)$$
+Let $Q^* $ be the closest point to $P$ on $l$, given by 
+$$Q^* = Q\left(\frac{c + md - mb}{1 + m^2}\right)$$
 $$= \left(\frac{c + md - mb}{1 + m^2}, \frac{mc + m^2d + b}{1 + m^2}\right)$$
 
 We need the distance from $Q^* $ to $P$.
