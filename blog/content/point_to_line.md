@@ -7,7 +7,7 @@ Authors: Aditya Gudibanda
 
 How do you calculate the distance from a point to a line? 
 
-First of all, why would you want to?  There could be many reasons, but I'm interested in it right now because it comes up in machine learning classification problems. For example, perceptrons and support vector machines (SVMs) entail the concept of a "margin" in classification. The intuition for margin comes from the idea that, given a set of points divided into two classes, we would like to find the line dividing the classes which maximizes the distance to the closest point. Intuitively, this will avoid overfitting on the test data, because the line does not get unnecessarily close to any point when it doesn't have to - this preserves "uncertainty". 
+First of all, why would you want to?  There could be many reasons, but I'm interested in it right now because it comes up in machine learning classification problems. For example, perceptrons and support vector machines (SVMs) entail the concept of a "margin" in classification. The intuition for margin is the idea that, given a set of points divided into two classes, we would like to find the line dividing the classes which maximizes the distance to the closest point. Intuitively, this will avoid overfitting on the test data, because the line does not get unnecessarily close to any point when it doesn't have to - this preserves "uncertainty". 
 
 So in order to find a separating line which maximizes the margin, we need to be able to mathematically express the margin so that we can incorporate it into a loss function to minimize.
 
@@ -34,7 +34,7 @@ $$mr + b = \frac{mc + m^2d-m^2b + b + bm^2}{1 + m^2}$$
 $$ = \frac{mc + m^2d + b}{1 + m^2}$$
 
 Let $Q^* $ be the closest point to $P$ on $l$, given by 
-$$\left(\frac{c + md - mb}{1 + m^2}\right)$$
+$$Q^* = Q\left(\frac{c + md - mb}{1 + m^2}\right)$$
 $$= \left(\frac{c + md - mb}{1 + m^2}, \frac{mc + m^2d + b}{1 + m^2}\right)$$
 
 We need the distance from $Q^* $ to $P$.

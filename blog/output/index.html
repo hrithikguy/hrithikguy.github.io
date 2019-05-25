@@ -66,7 +66,7 @@
 
 
 <p>How do you calculate the distance from a point to a line? </p>
-<p>First of all, why would you want to?  There could be many reasons, but I'm interested in it right now because it comes up in machine learning classification problems. For example, perceptrons and support vector machines (SVMs) entail the concept of a "margin" in classification. The intuition for margin comes from the idea that, given a set of points divided into two classes, we would like to find the line dividing the classes which maximizes the distance to the closest point. Intuitively, this will avoid overfitting on the test data, because the line does not get unnecessarily close to any point when it doesn't have to - this preserves "uncertainty". </p>
+<p>First of all, why would you want to?  There could be many reasons, but I'm interested in it right now because it comes up in machine learning classification problems. For example, perceptrons and support vector machines (SVMs) entail the concept of a "margin" in classification. The intuition for margin is the idea that, given a set of points divided into two classes, we would like to find the line dividing the classes which maximizes the distance to the closest point. Intuitively, this will avoid overfitting on the test data, because the line does not get unnecessarily close to any point when it doesn't have to - this preserves "uncertainty". </p>
 <p>So in order to find a separating line which maximizes the margin, we need to be able to mathematically express the margin so that we can incorporate it into a loss function to minimize.</p>
 <p>I will be doing this for two dimensions.</p>
 <p>Suppose we have a line $l$ given by the equation $y = mx + b$, and we have a point $P = (c,d)$. We would like to compute the distance from $P$ to $l$.</p>
@@ -81,8 +81,8 @@ $$r = \frac{2c + 2md - 2mb}{2 + 2m^2} = \frac{c + md - mb}{1 + m^2}$$</p>
 <p>This is the $x$-coordinate of the point on $l$ closest to $P$. The $y$ coordinate is given by 
 $$mr + b = \frac{mc + m^2d-m^2b + b + bm^2}{1 + m^2}$$
 $$ = \frac{mc + m^2d + b}{1 + m^2}$$</p>
-<p>Let $Q^* $ be the closest point to $P$ on $l$, given by 
-$$\left(\frac{c + md - mb}{1 + m^2}\right)$$
+<p>Let $Q^<em> $ be the closest point to $P$ on $l$, given by 
+$$Q^</em> = Q\left(\frac{c + md - mb}{1 + m^2}\right)$$
 $$= \left(\frac{c + md - mb}{1 + m^2}, \frac{mc + m^2d + b}{1 + m^2}\right)$$</p>
 <p>We need the distance from $Q^* $ to $P$.</p><p class="subheader">Category: <a href="./category/technical.html">Technical</a>
 
