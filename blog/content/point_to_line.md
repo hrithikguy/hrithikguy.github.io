@@ -51,7 +51,7 @@ $$= \sqrt{ \frac{(m^2 + 1)(cm - d + b)^2}{(1 + m^2)^2}}$$
 $$= \sqrt{ \frac{(cm-d+b)^2}{1 + m^2}  }$$
 $$= \frac{cm -d + b}{\sqrt{1 + m^2}}$$
 
-
+and that is our final answer to the distance from $P = (c,d)$ to the line $l$, given by $y = mx + b$.
 
 
 
