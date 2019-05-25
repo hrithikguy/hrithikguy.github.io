@@ -18,16 +18,27 @@ Suppose we have a line $l$ given by the equation $y = mx + b$, and we have a poi
 
 We will do this by computing the distance between $P$ and an arbitrary point on $l$, $Q(r)= (r, mr + b)$, parametrized by the variable $r$. Then we will find the $r$ which minimizes this distance. This is equivalent to minimizing the square of the distance, so we will minimize that instead.
 
-The distance squared is $f(r) = || P - Q(r) || ^2 = (c - r)^2 + (mr + b - d)^2$. To find the $r$ which minimizes this, we set the derivative equal to $0$.
+The distance squared is 
+$$f(r) = || P - Q(r) || ^2 = (c - r)^2 + (mr + b - d)^2$$
 
-$\frac{d f(r)}{dr} = 2(c-r)(-1) + 2 (mr + b - d) (m)$
-$ = -2c + 2r + 2m^2r + 2mb - 2md = r(2 + 2m^2) + (2mb - 2md - 2c) = 0$. Solving for $r$, we get $r = \frac{2c + 2md - 2mb}{2 + 2m^2} = \frac{c + md - mb}{1 + m^2}$.
+ To find the $r$ which minimizes this, we set the derivative equal to $0$.
 
-This is the $x$-coordinate of the point on $l$ closest to $P$. The $y$ coordinate is given by $mr + b$ = \frac{mc + m^2d-m^2b + b + bm^2}{1 + m^2}$
-$ = \frac{mc + m^2d + b}{1 + m^2}$.
+$$\frac{d f(r)}{dr} = 2(c-r)(-1) + 2 (mr + b - d) (m)$$
+$$ = -2c + 2r + 2m^2r + 2mb - 2md = r(2 + 2m^2) + (2mb - 2md - 2c) = 0$$ 
 
-Let $Q^* $ be the closest point to $P$ on $l$, given by $\left(\frac{c + md - mb}{1 + m^2}\right)$
-$= \left(\frac{c + md - mb}{1 + m^2}, \frac{mc + m^2d + b}{1 + m^2}\right)$
+Solving for $r$, we get 
+$$r = \frac{2c + 2md - 2mb}{2 + 2m^2} = \frac{c + md - mb}{1 + m^2}$$
 
-We need the distance from $Q^* $ to $P$. $$x = y^2$$
+This is the $x$-coordinate of the point on $l$ closest to $P$. The $y$ coordinate is given by 
+$$mr + b = \frac{mc + m^2d-m^2b + b + bm^2}{1 + m^2}$$
+$$ = \frac{mc + m^2d + b}{1 + m^2}$$
+
+Let $Q^* $ be the closest point to $P$ on $l$, given by 
+$$\left(\frac{c + md - mb}{1 + m^2}\right)$$
+$$= \left(\frac{c + md - mb}{1 + m^2}, \frac{mc + m^2d + b}{1 + m^2}\right)$$
+
+We need the distance from $Q^* $ to $P$.
+
+
+
 
