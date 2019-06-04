@@ -60,44 +60,26 @@
         
 
             <article>
-                <a href="./first-math-post-distance-from-a-point-to-a-line-in-2d.html"><h3 class="article-title">First Math Post - Distance from a point to a line in 2D</h3></a>
-<h6 class="subheader" title="2019-05-24T18:44:00-05:00">Fri 24 May 2019
+                <a href="./simple-math-post-quadratic-equation.html"><h3 class="article-title">Simple Math Post - Quadratic Equation</h3></a>
+<h6 class="subheader" title="2019-06-03T20:17:00-05:00">Mon 03 June 2019
 </h6>
 
 
-<p>How do you calculate the distance from a point to a line? </p>
-<p>First of all, why would you want to?  There could be many reasons, but I'm interested in it right now because it comes up in machine learning classification problems. For example, perceptrons and support vector machines (SVMs) entail the concept of a "margin" in classification. The intuition for margin is the idea that, given a set of points divided into two classes, we would like to find the line dividing the classes which maximizes the distance to the closest point. Intuitively, this will avoid overfitting on the test data, because the line does not get unnecessarily close to any point when it doesn't have to - this preserves "uncertainty". </p>
-<p>So in order to find a separating line which maximizes the margin, we need to be able to mathematically express the margin so that we can incorporate it into a loss function to minimize.</p>
-<p>I will be doing this for two dimensions.</p>
-<p>Suppose we have a line $l$ given by the equation $y = mx + b$, and we have a point $P = (c,d)$. We would like to compute the distance from $P$ to $l$.</p>
-<p>We will do this by computing the distance between $P$ and an arbitrary point on $l$, $Q(r)= (r, mr + b)$, parametrized by the variable $r$. Then we will find the $r$ which minimizes this distance. This is equivalent to minimizing the square of the distance, so we will minimize that instead.</p>
-<p>The distance squared is 
-$$f(r) = || P - Q(r) || ^2 = (c - r)^2 + (mr + b - d)^2$$</p>
-<p>To find the $r$ which minimizes this, we set the derivative equal to $0$.</p>
-<p>$$\frac{d f(r)}{dr} = 2(c-r)(-1) + 2 (mr + b - d) (m)$$
-$$ = -2c + 2r + 2m^2r + 2mb - 2md = r(2 + 2m^2) + (2mb - 2md - 2c) = 0$$ </p>
-<p>Solving for $r$, we get 
-$$r = \frac{2c + 2md - 2mb}{2 + 2m^2} = \frac{c + md - mb}{1 + m^2}$$</p>
-<p>This is the $x$-coordinate of the point on $l$ closest to $P$. The $y$ coordinate is given by 
-$$mr + b = \frac{mc + m^2d-m^2b + b + bm^2}{1 + m^2}$$
-$$ = \frac{mc + m^2d + b}{1 + m^2}$$</p>
-<p>Let $Q' $ be the closest point to $P$ on $l$, given by 
-$$Q' = Q\left(\frac{c + md - mb}{1 + m^2}\right)$$
-$$= \left(\frac{c + md - mb}{1 + m^2}, \frac{mc + m^2d + b}{1 + m^2}\right)$$</p>
-<p>We need the distance from $Q' $ to $P$.</p>
-<p>This is given by 
-$$\sqrt{ \left(  c - \frac{c + md - mb}{1 + m^2}  \right)^2 + \left(  d - \frac{mc + m^2d + b}{1 + m^2}  \right)^2  }$$</p>
-<p>$$=\sqrt{ \left(  \frac{c + cm^2 - c - md + mb}{1 + m^2}  \right)^2 + \left(  \frac{d + dm^2 - mc - m^2d - b}{1 + m^2}  \right)^2  }$$
-$$= \sqrt{ \left(  \frac{cm^2- md + mb}{1 + m^2}  \right)^2 + \left(  \frac{d - mc - b}{1 + m^2}  \right)^2  }$$
-$$= \sqrt{ \left(  \frac{m (cm - d + b)}{1 + m^2}  \right)^2 + \left(  \frac{cm - d + b}{1 + m^2}  \right)^2  }$$
-$$= \sqrt{ \frac{m^2 (cm - d + b)^2 + (cm - d + b)^2}{(1 + m^2)^2} }$$
-$$= \sqrt{ \frac{(m^2 + 1)(cm - d + b)^2}{(1 + m^2)^2}}$$
-$$= \sqrt{ \frac{(cm-d+b)^2}{1 + m^2}  }$$
-$$= \frac{cm -d + b}{\sqrt{1 + m^2}}$$</p>
-<p>and that is our final answer to the distance from $P = (c,d)$ to the line $l$, given by $y = mx + b$.</p><p class="subheader">Category: <a href="./category/technical.html">Technical</a>
+<p>This is just a "filler" post to keep the content coming.</p>
+<p>Let's prove the quadratic formula. We'd like to solve for $x$ in the equation</p>
+<p>$$ax^2 + bx + c = 0$$</p>
+<p>Let's start with some transformations.</p>
+<p>$$x^2 + \frac{b}{a}x + \frac{c}{a} = 0$$</p>
+<p>Next, we complete the square:</p>
+<p>$$(x + \frac{b}{2a})^2 - \frac{b^2}{4a^2} + \frac{c}{a} = 0$$
+$$\Rightarrow (x + \frac{b}{2a})^2 - \frac{b^2 - 4ac}{4a^2} = 0$$
+$$\Rightarrow (x + \frac{b}{2a})^2 = \frac{b^2 - 4ac}{4a^2}$$
+$$\Rightarrow x + \frac{b}{2a} = \pm \sqrt{\frac{b^2 - 4ac}{2a}}$$
+$$\Rightarrow x =  \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$</p>
+<p>as desired.</p><p class="subheader">Category: <a href="./category/technical.html">Technical</a>
 
     Tagged: 
-    <a href="./tag/geometry.html">geometry </a>
+    <a href="./tag/algebra.html">algebra </a>
     <a href="./tag/testing.html">testing </a>
 </p>
 
@@ -108,6 +90,29 @@ $$= \frac{cm -d + b}{\sqrt{1 + m^2}}$$</p>
 
                 <hr  class="gradient"/>
 
+
+        
+
+
+            <article>
+                <a href="./first-math-post-distance-from-a-point-to-a-line-in-2d.html"><h3 class="article-title">First Math Post - Distance from a point to a line in 2D</h3></a>
+<h6 class="subheader" title="2019-05-24T18:44:00-05:00">Fri 24 May 2019
+</h6>
+
+
+<p>How do you calculate the distance from a point to a line? </p>
+<p>First of all, why would you want to?  There could be many reasons, but I'm interested in it right now because it comes up in machine learning classification problems. For example, perceptrons and support vector machines (SVMs) entail …</p><p class="subheader">Category: <a href="./category/technical.html">Technical</a>
+
+    Tagged: 
+    <a href="./tag/geometry.html">geometry </a>
+    <a href="./tag/testing.html">testing </a>
+</p>
+
+
+
+                <a class="button radius secondary small right" href="./first-math-post-distance-from-a-point-to-a-line-in-2d.html">Read More</a>
+                <hr  class="gradient"/>
+            </article>
 
         
 
